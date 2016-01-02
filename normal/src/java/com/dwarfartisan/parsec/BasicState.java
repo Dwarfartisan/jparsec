@@ -17,6 +17,7 @@ public class BasicState<T> implements State<T> {
             this.tran = this.current;
         }
         return this.current;
+
     }
     public void commit(int tran) {
         if (this.tran == tran) {
@@ -33,8 +34,7 @@ public class BasicState<T> implements State<T> {
         if (current >= this.buffer.length) {
             throw new EOFException();
         }
-        T re =  this.buffer[this.current];
-        this.current ++;
+        T re =  this.buffer[this.current++];
         return re;
     }
 
