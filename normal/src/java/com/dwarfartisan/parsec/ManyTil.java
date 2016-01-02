@@ -2,15 +2,16 @@ package com.dwarfartisan.parsec;
 
 import java.io.EOFException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Mars Liu on 16/1/2.
  */
-public class ManyTil<T, L, E> extends Parsec<ArrayList<T>, E> {
+public class ManyTil<T, L, E> extends Parsec<List<T>, E> {
     private P<T, E> parser;
     private P<L, E> til;
     @Override
-    public ArrayList<T> parse(State<E> s) throws EOFException, ParsecException {
+    public List<T> parse(State<E> s) throws EOFException, ParsecException {
         ArrayList<T> re = new ArrayList<T>();
         try{
             while (true) {
