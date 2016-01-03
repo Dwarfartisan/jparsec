@@ -9,8 +9,7 @@ import java.util.Arrays;
 public class NoneOf<T> extends Parsec<T, T> {
     private T[] items;
     public T parse(State<T> s) throws EOFException, ParsecException {
-        T re;
-        re = s.next();
+        T re = s.next();
         for (T item : this.items){
             if (re.equals(item)) {
                 String message = String.format("Expect a item none of %s, but got %s", Arrays.toString(this.items), re);
