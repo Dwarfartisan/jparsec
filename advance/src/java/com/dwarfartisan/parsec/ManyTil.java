@@ -5,15 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Mars Liu on 16/1/2.
+ * Created by Mars Liu on 2016-01-03.
  */
-public class Many1Til<T, L, E> extends Parsec<List<T>, E> {
-    private P<T, E> parser;
-    private P<L, E> til;
+public class ManyTil<T, L, E> implements Parsec<List<T>, E> {
+    private Parsec<T, E> parser;
+    private Parsec<L, E> til;
     @Override
     public List<T> parse(State<E> s) throws EOFException, ParsecException {
-        List<T> re = new ArrayList<T>();
-        re.add(this.parser.parse(s));
+        ArrayList<T> re = new ArrayList<T>();
         try{
             while (true) {
                 re.add(this.parser.parse(s));
@@ -23,7 +22,7 @@ public class Many1Til<T, L, E> extends Parsec<List<T>, E> {
             return re;
         }
     }
-    public Many1Til(P<T, E> parser, P<L, E> til) {
+    public ManyTil(Parsec<T, E> parser, Parsec<L, E> til) {
         this.parser = new Try<T, E>(parser);
         this.til = til;
     }

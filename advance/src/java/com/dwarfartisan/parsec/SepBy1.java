@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Mars Liu on 16/1/1.
+ * Created by Mars Liu on 2016-01-03.
  */
-public class SepBy<T, S, E> extends Parsec<List<T>, E> {
-    private P<S, E> by;
-    private P<T, E> p;
+public class SepBy1<T, S, E> implements Parsec<List<T>, E> {
+    private Parsec<S, E> by;
+    private Parsec<T, E> p;
     @Override
     public List<T> parse(State<E> s) throws EOFException, ParsecException {
-        ArrayList<T> re = new ArrayList<T>();
+        List<T> re = new ArrayList<T>();
+        re.add(this.p.parse(s));
         try {
-            re.add(this.p.parse(s));
             while (true) {
                 this.by.parse(s);
                 re.add(this.p.parse(s));
@@ -24,8 +24,8 @@ public class SepBy<T, S, E> extends Parsec<List<T>, E> {
         }
     }
 
-    public SepBy(P<T, E> p, P<S, E> by) {
-        this.by = new Try<S, E>(by);
-        this.p = new Try<T, E>(p);
+    public SepBy1(Parsec<T, E> p, Parsec<S, E> by) {
+        this.by = new Try<>(by);
+        this.p = new Try<>(p);
     }
 }
