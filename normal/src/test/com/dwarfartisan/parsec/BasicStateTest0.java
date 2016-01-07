@@ -63,7 +63,25 @@ public class BasicStateTest0 {
      */
     @Test
     public void testBegin() throws Exception {
-//TODO: Test goes here... 
+        State<Character> state = newState("hello");
+
+        Character c = state.next();
+
+
+
+        Assert.assertEquals(c,new Character('h'));
+
+        int a = state.begin();
+
+        c = state.next();
+        c = state.next();
+        c = state.next();
+
+        state.rollback(a);
+
+        Character d = state.next();
+
+        Assert.assertEquals(d,new Character('e'));
     }
 
     /**
@@ -73,7 +91,19 @@ public class BasicStateTest0 {
      */
     @Test
     public void testCommit() throws Exception {
-//TODO: Test goes here... 
+        State<Character> state = newState("hello");
+        int a = state.begin();
+        Character c = state.next();
+
+
+        Assert.assertEquals(c,new Character('h'));
+        c = state.next();
+
+        state.commit(a);
+
+        Character d = state.next();
+
+        Assert.assertEquals(d,new Character('l'));
     }
 
     /**
@@ -83,7 +113,19 @@ public class BasicStateTest0 {
      */
     @Test
     public void testRollback() throws Exception {
-//TODO: Test goes here... 
+        State<Character> state = newState("hello");
+
+        int a = state.begin();
+        Character c = state.next();
+
+
+        Assert.assertEquals(c,new Character('h'));
+
+        state.rollback(a);
+
+        Character d = state.next();
+
+        Assert.assertEquals(d,new Character('h'));
     }
 
     /**
@@ -93,7 +135,26 @@ public class BasicStateTest0 {
      */
     @Test
     public void testNext() throws Exception {
-//TODO: Test goes here... 
+        State<Character> state = newState("hello");
+
+
+        Character c = state.next();
+
+        Assert.assertEquals(c,new Character('h'));
+
+        Character d = state.next();
+
+        Assert.assertEquals(d,new Character('e'));
+        Character e = state.next();
+
+        Assert.assertEquals(e,new Character('l'));
+        Character f = state.next();
+
+        Assert.assertEquals(f,new Character('l'));
+        Character g = state.next();
+
+        Assert.assertEquals(g,new Character('o'));
+
     }
 
 
