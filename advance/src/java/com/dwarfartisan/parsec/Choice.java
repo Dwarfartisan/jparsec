@@ -1,8 +1,5 @@
 package com.dwarfartisan.parsec;
 
-import org.junit.internal.runners.statements.ExpectException;
-import sun.reflect.annotation.ExceptionProxy;
-
 import java.io.EOFException;
 
 /**

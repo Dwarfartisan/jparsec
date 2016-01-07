@@ -7,6 +7,7 @@ public class ParsecException extends Exception {
     private String message;
     private int index;
     public ParsecException(int idx, String message) {
+        super(message);
         this.index = idx;
         this.message = message;
     }
