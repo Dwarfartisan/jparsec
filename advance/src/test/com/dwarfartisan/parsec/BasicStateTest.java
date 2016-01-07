@@ -9,6 +9,7 @@ import sun.reflect.annotation.ExceptionProxy;
 import java.io.EOFException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 /**
  * BasicState Tester.
@@ -54,6 +55,18 @@ public class BasicStateTest {
         );
 
         Object o = oneof.parse(state);
+        Assert.assertNotNull(o);
+    }
+    @Test
+    public void testReturn()throws  Exception{
+        State<Character> state = newState("hello");
+
+        Return<Character> r = new Return<Character>(
+                new Character('e')
+        );
+
+        Object o = (new Choice(new OneOf(new Character[]{'h'}),r)).parse(state);
+        
         Assert.assertNotNull(o);
     }
 
