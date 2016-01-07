@@ -15,7 +15,7 @@ public class Choice<T, E> implements Parsec<T, E> {
         for (Parsec<T, E> psc : this.parsecs){
             try {
                 return psc.parse(s);
-            }catch (Exception e){
+            }catch (EOFException|ParsecException e){
                 err = e;
                 if(s.index()!=index){
                     throw e;
