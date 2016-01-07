@@ -4,8 +4,12 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
+import sun.reflect.annotation.ExceptionProxy;
 
 import java.io.EOFException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 /**
  * BasicState Tester.
@@ -40,6 +44,30 @@ public class BasicStateTest {
     @Test
     public void testNext() throws Exception {
 //TODO: Test goes here...
+    }
+
+    @Test
+    public void testOneOf()throws Exception{
+        State<Character> state = newState("hello");
+
+        OneOf<Character> oneof = new OneOf<Character>(
+                new Character[]{'h'}
+        );
+
+        Object o = oneof.parse(state);
+        Assert.assertNotNull(o);
+    }
+    @Test
+    public void testReturn()throws  Exception{
+        State<Character> state = newState("hello");
+
+        Return<Character> r = new Return<Character>(
+                new Character('e')
+        );
+
+        Object o = (new Choice(new OneOf(new Character[]{'h'}),r)).parse(state);
+        
+        Assert.assertNotNull(o);
     }
 
     /**
