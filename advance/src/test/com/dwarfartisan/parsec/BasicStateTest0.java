@@ -16,8 +16,6 @@ import java.io.EOFException;
  */
 public class BasicStateTest0 {
 
-    private String data = "It is a \"string\" for this unit test";
-
     private State<Character> newState(String data) {
         Character[] buffer   = new Character[data.length()];
         for (int i=0; i < data.length(); i++) {
@@ -41,8 +39,9 @@ public class BasicStateTest0 {
      */
     @Test
     public void testIndex() throws Exception {
+        String data = "It is a \"string\" for this unit test";
         State<Character> state = newState(data);
-        while (state.index()<data.length()){
+        while (state.index()< data.length()){
             int index = state.index();
             Character c = state.next();
             Character chr = data.charAt(index);
