@@ -25,7 +25,7 @@ public class Between<T, E, O, C> implements Parsec<T, E> {
     }
 
 
-    public class In {
+    static public class In<T, E, O, C> {
         private Parsec<O, E> open;
         private Parsec<C, E> close;
         public In(Parsec<O, E> open, Parsec<C, E> close) {
