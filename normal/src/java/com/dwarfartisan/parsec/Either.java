@@ -6,8 +6,8 @@ import java.io.EOFException;
  * Created by Mars Liu on 16/1/1.
  */
 public class Either<T, E> extends Parsec<T, E> {
-    private P<T, E> x;
-    private P<T, E> y;
+    private Parsec<T, E> x;
+    private Parsec<T, E> y;
     @Override
     public T parse(State<E> s) throws EOFException, ParsecException {
         int prev = s.index();
@@ -35,10 +35,10 @@ public class Either<T, E> extends Parsec<T, E> {
         }
 
     }
-    public Either or(P<T, E> parser) {
+    public Either<T, E> or(Parsec<T, E> parser) {
         return new Either<T, E>(this, parser);
     }
-    public Either(P<T, E> x, P<T, E> y) {
+    public Either(Parsec<T, E> x, Parsec<T, E> y) {
         this.x = x;
         this.y = y;
     }

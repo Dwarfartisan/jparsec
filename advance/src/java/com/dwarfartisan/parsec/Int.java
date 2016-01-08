@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Mars Liu on 2016-01-07.
  */
 public class Int implements Parsec<String, Character> {
-    private Parsec<List<Character>, Character> parser = new Ch('-').then((State<Character> s) -> {
+    private Parsec<List<Character>, Character> parser = new Ch('-').then(s -> {
         List<Character> re = new ArrayList<Character>('-');
         re.addAll(new Many1<>(new Digit()).parse(s));
         return re;

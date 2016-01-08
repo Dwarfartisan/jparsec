@@ -6,7 +6,7 @@ import java.io.EOFException;
  * Created by Mars Liu on 16/1/1.
  */
 public class Try<T, E> extends Parsec<T, E> {
-    private P<T, E> parser;
+    private Parsec<T, E> parser;
     public T parse(State<E> s) throws EOFException, ParsecException {
         int tran = s.begin();
         try {
@@ -25,7 +25,7 @@ public class Try<T, E> extends Parsec<T, E> {
             throw new ParsecException(s.index(), message);
         }
     }
-    public Try(P<T, E> parser) {
+    public Try(Parsec<T, E> parser) {
         this.parser = parser;
     }
 }

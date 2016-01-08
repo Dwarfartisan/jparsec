@@ -1,11 +1,11 @@
 package com.dwarfartisan.parsec;
 
-import java.lang.Exception;
+import java.lang.RuntimeException;
 
 /**
  * Created by Mars Liu on 16/1/1.
  */
-public class ParsecException extends Exception {
+public class ParsecException extends RuntimeException {
     private String message;
     private int index;
     public ParsecException(int idx, String message) {

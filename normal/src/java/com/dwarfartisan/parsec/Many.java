@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Mars Liu on 16/1/1.
  */
 public class Many<T, E> extends Parsec<List<T>, E> {
-    private P<T, E> parser;
+    private Parsec<T, E> parser;
     @Override
     public List<T> parse(State<E> s) throws EOFException, ParsecException {
         List<T> re = new ArrayList<T>();
@@ -20,7 +20,7 @@ public class Many<T, E> extends Parsec<List<T>, E> {
             return re;
         }
     }
-    public Many(P<T, E> parser) {
+    public Many(Parsec<T, E> parser) {
         this.parser = new Try<T, E>(parser);
     }
 }

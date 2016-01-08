@@ -9,7 +9,7 @@ public abstract class Parsec<T, E> implements P<T, E> {
     @Override
     public abstract T parse(State<E> s) throws EOFException, ParsecException;
 
-    public <C> P<C, E> bind(final Binder<T, C, E> binder) {
+    public <C> Parsec<C, E> bind(final Binder<T, C, E> binder) {
         final Parsec<T, E> psc = this;
         return new Parsec<C, E>() {
             @Override
@@ -20,7 +20,7 @@ public abstract class Parsec<T, E> implements P<T, E> {
         };
     }
 
-    public <C> P<C, E> then(final Parsec<C, E> parsec) throws EOFException, ParsecException {
+    public <C> Parsec<C, E> then(final Parsec<C, E> parsec) throws EOFException, ParsecException {
         final Parsec<T, E> psc = this;
         return new Parsec<C, E>() {
             @Override
@@ -31,7 +31,7 @@ public abstract class Parsec<T, E> implements P<T, E> {
         };
     }
 
-    public <C> P<T, E> over(final Parsec<C, E> parsec) throws EOFException, ParsecException {
+    public <C> Parsec<T, E> over(final Parsec<C, E> parsec) throws EOFException, ParsecException {
         final Parsec<T, E> psc = this;
         return new Parsec<T, E>() {
             @Override
@@ -42,4 +42,5 @@ public abstract class Parsec<T, E> implements P<T, E> {
             }
         };
     }
+
 }

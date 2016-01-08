@@ -8,8 +8,8 @@ import java.util.List;
  * Created by Mars Liu on 16/1/2.
  */
 public class ManyTil<T, L, E> extends Parsec<List<T>, E> {
-    private P<T, E> parser;
-    private P<L, E> til;
+    private Parsec<T, E> parser;
+    private Parsec<L, E> til;
     @Override
     public List<T> parse(State<E> s) throws EOFException, ParsecException {
         ArrayList<T> re = new ArrayList<T>();
@@ -22,7 +22,7 @@ public class ManyTil<T, L, E> extends Parsec<List<T>, E> {
             return re;
         }
     }
-    public ManyTil(P<T, E> parser, P<L, E> til) {
+    public ManyTil(Parsec<T, E> parser, Parsec<L, E> til) {
         this.parser = new Try<T, E>(parser);
         this.til = til;
     }
