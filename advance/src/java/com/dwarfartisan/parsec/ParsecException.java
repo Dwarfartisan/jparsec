@@ -3,10 +3,11 @@ package com.dwarfartisan.parsec;
 /**
  * Created by Mars Liu on 2016-01-02.
  */
-public class ParsecException extends Exception {
+public class ParsecException extends RuntimeException {
     private String message;
     private int index;
     public ParsecException(int idx, String message) {
+        super(message);
         this.index = idx;
         this.message = message;
     }

@@ -8,8 +8,8 @@ import java.util.List;
  * Created by Mars Liu on 16/1/1.
  */
 public class SepBy1<T, S, E> extends Parsec<List<T>, E> {
-    private P<S, E> by;
-    private P<T, E> p;
+    private Parsec<S, E> by;
+    private Parsec<T, E> p;
     @Override
     public List<T> parse(State<E> s) throws EOFException, ParsecException {
         List<T> re = new ArrayList<T>();
@@ -24,8 +24,8 @@ public class SepBy1<T, S, E> extends Parsec<List<T>, E> {
         }
     }
 
-    public SepBy1(P<T, E> p, P<S, E> by) {
-        this.by = new Try(by);
-        this.p = new Try(p);
+    public SepBy1(Parsec<T, E> p, Parsec<S, E> by) {
+        this.by = new Try<S, E>(by);
+        this.p = new Try<T, E>(p);
     }
 }

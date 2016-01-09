@@ -1,10 +1,12 @@
 package com.dwarfartisan.parsec;
 
 import java.io.EOFException;
+import java.util.List;
 
 /**
  * Created by Mars Liu on 2016-01-02.
  */
+@FunctionalInterface
 public interface Parsec<T, E> {
     T parse(State<E> s)throws EOFException, ParsecException;
 
@@ -19,7 +21,7 @@ public interface Parsec<T, E> {
         };
     }
 
-    default <C> Parsec<C, E> then(Parsec<C, E> parsec) throws EOFException, ParsecException {
+    default <C> Parsec<C, E> then(Parsec<C, E> parsec){
         Parsec<T, E> psc = this;
         return new Parsec<C, E>() {
             @Override
@@ -30,7 +32,7 @@ public interface Parsec<T, E> {
         };
     }
 
-    default <C> Parsec<T, E> over(Parsec<C, E> parsec) throws EOFException, ParsecException {
+    default <C> Parsec<T, E> over(Parsec<C, E> parsec){
         Parsec<T, E> psc = this;
         return new Parsec<T, E>() {
             @Override

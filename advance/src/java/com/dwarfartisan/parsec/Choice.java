@@ -1,8 +1,5 @@
 package com.dwarfartisan.parsec;
 
-import org.junit.internal.runners.statements.ExpectException;
-import sun.reflect.annotation.ExceptionProxy;
-
 import java.io.EOFException;
 
 /**
@@ -18,7 +15,7 @@ public class Choice<T, E> implements Parsec<T, E> {
         for (Parsec<T, E> psc : this.parsecs){
             try {
                 return psc.parse(s);
-            }catch (Exception e){
+            }catch (EOFException|ParsecException e){
                 err = e;
                 if(s.index()!=index){
                     throw e;
@@ -28,7 +25,7 @@ public class Choice<T, E> implements Parsec<T, E> {
         if(err == null){
             throw new ParsecException(s.index(), "Choice Error : All parsec parser failed.");
         } else {
-            String message = String.format("Choice Error, stop at %s", err);
+            String message = String.format("Choice Error %s, stop at %d", err, s.index());
             throw new ParsecException(s.index(), message);
         }
     }
