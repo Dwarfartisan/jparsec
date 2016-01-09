@@ -9,7 +9,7 @@ public class Ne<T> extends Parsec<T, T> {
     private T item;
     public T parse(State<T> s) throws EOFException, ParsecException {
         T re = s.next();
-        if ( re != item ) {
+        if (! re.equals(item) ) {
             return re;
         } else {
             String message = String.format("Expect a item not equals to %s, but got %s", this.item, re);
