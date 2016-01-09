@@ -1,29 +1,28 @@
 package com.dwarfartisan.parsec;
 
+import com.sun.xml.internal.ws.policy.spi.AssertionCreationException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
 
 import java.io.EOFException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * BasicState Tester.
  *
  * @author <Authors name>
- * @since <pre>一月 2, 2016</pre>
+ * @since <pre>一月 1, 2016</pre>
  * @version 1.0
  */
-public class BasicStateTest0 {
+public class BasicStateTest extends Base {
 
-    private State<Character> newState(String data) {
-        Character[] buffer   = new Character[data.length()];
-        for (int i=0; i < data.length(); i++) {
-            buffer[i] = data.charAt(i);
-        }
+    private String data = "It is a \"string\" for this unit test";
 
-        return new BasicState<Character>(buffer);
-    }
+
     @Before
     public void before() throws Exception {
 
@@ -39,9 +38,8 @@ public class BasicStateTest0 {
      */
     @Test
     public void testIndex() throws Exception {
-        String data = "It is a \"string\" for this unit test";
         State<Character> state = newState(data);
-        while (state.index()< data.length()){
+        while (state.index()<data.length()){
             int index = state.index();
             Character c = state.next();
             Character chr = data.charAt(index);
@@ -139,7 +137,7 @@ public class BasicStateTest0 {
 
         Character c = state.next();
 
-        Assert.assertEquals(c,new Character('h'));
+        Assert.assertEquals(c, new Character('h'));
 
         Character d = state.next();
 
@@ -157,4 +155,4 @@ public class BasicStateTest0 {
     }
 
 
-}
+} 
