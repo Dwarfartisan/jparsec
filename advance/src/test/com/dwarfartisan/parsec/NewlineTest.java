@@ -21,15 +21,15 @@ public class NewlineTest extends Base {
      */
     @Test
     public void TestNewline() throws Exception {
-        State<Character> state = newState("\r");
-        Newline newline = new Newline();
+        State<Character> state = newState("\n\r");
+        Parsec<String, Character> crlf = new Crlf();
 
-        String b = newline.parse(state);
-        Assert.assertEquals(b.length(),1);
+        String b = crlf.parse(state);
+        Assert.assertEquals(b, "\n\r");
 
         State<Character> state1 = newState("\n");
 
-        Enter enter = new Enter();
+        Parsec<String, Character> enter = new Newline();
 
         String c = enter.parse(state1);
 
@@ -37,9 +37,9 @@ public class NewlineTest extends Base {
 
 
         State<Character> state2 = newState("\n\r");
-        EnterNewline ennewline = new EnterNewline();
+        EndOfLine nl = new EndOfLine();
 
-        String d = ennewline.parse(state2);
+        String d = nl.parse(state2);
         Assert.assertEquals(d.length(),2);
 
         // TODO: 16/1/10  error test

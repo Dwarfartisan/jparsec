@@ -12,17 +12,15 @@ import java.io.EOFException;
  *
  * 这里把回车和换行分出,独立出去,用户可行自行重新命名和包装.
  * modify by zhaonf on 2016-1-10
+ * -----------------
+ *
+ * NewLine 匹配 \n .
  */
 public class Newline implements Parsec<String, Character> {
+    private Parsec<Character, Character> parser = new Ch('\n');
     @Override
     public String parse(State<Character> s) throws EOFException, ParsecException {
-
-        Parsec<String, Character> r = new Try<String, Character>(
-                new Ch('\r').then(
-                        new Return<String, Character>("\n")
-        ));
-
-
-        return r.parse(s);
+        parser.parse(s);
+        return "\n";
     }
 }
