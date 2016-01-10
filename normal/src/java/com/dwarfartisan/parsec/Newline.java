@@ -1,21 +1,15 @@
 package com.dwarfartisan.parsec;
 
-import com.sun.tools.classfile.CharacterRangeTable_attribute;
-
 import java.io.EOFException;
 
 /**
- * Created by Mars Liu on 2016-01-08.
+ * Created by zhaonf on 16/1/10.
  */
-public class Newline extends Parsec<String, Character> {
+public class Newline extends Parsec<String,Character> {
+    private Parsec<Character, Character> parser = new Ch('\n');
     @Override
     public String parse(State<Character> s) throws EOFException, ParsecException {
-        Parsec<String, Character> r = new Try<String, Character>(
-                new Ch('\r').then(
-                        new Return<String, Character>("\n")
-        ));
-
-
-        return r.parse(s);
+        this.parser.parse(s);
+        return "\n";
     }
 }

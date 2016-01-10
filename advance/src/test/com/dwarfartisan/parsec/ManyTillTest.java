@@ -14,7 +14,7 @@ import java.util.List;
  * @version 1.0
  * @since <pre>一月 9, 2016</pre>
  */
-public class ManyTilTest extends Base{
+public class ManyTillTest extends Base{
 
     @Before
     public void before() throws Exception {
@@ -28,7 +28,7 @@ public class ManyTilTest extends Base{
      * Method: parse(State<E> s)
      */
     @Test
-    public void TestManyTil() throws Exception {
+    public void TestManyTill() throws Exception {
         State<Character> state = newState("hhhhhhlhhhll");
 
         ManyTill<Character, Character, Character> m = new ManyTill<>(

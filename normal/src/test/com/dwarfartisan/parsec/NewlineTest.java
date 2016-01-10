@@ -29,7 +29,7 @@ public class NewlineTest extends Base {
 
         State<Character> state1 = newState("\n");
 
-        Enter enter = new Enter();
+        Newline enter = new Newline();
 
         String c = enter.parse(state1);
 
@@ -37,7 +37,7 @@ public class NewlineTest extends Base {
 
 
         State<Character> state2 = newState("\n\r");
-        EnterNewline ennewline = new EnterNewline();
+        EndOfLine ennewline = new EndOfLine();
 
         String d = ennewline.parse(state2);
         Assert.assertEquals(d.length(),2);
