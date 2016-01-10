@@ -6,7 +6,7 @@ import java.io.EOFException;
  * Created by Mars Liu on 2016-01-07.
  * Newline 尝试匹配换行.这里比 Haskell 版本更敏感, \r, \n, 或 \r\n 都可以解析成功.
  */
-public class Newline implements Parsec<String, Character> {
+public class NewLine implements Parsec<String, Character> {
     @Override
     public String parse(State<Character> s) throws EOFException, ParsecException {
         Parsec<String, Character> r = new Try<>(new Ch('\r').then(new Return<>("\r")));
