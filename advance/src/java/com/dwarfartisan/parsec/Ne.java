@@ -4,6 +4,7 @@ import java.io.EOFException;
 
 /**
  * Created by Mars Liu on 2016-01-03.
+ * Ne 即 not equals ,它期待下个信息项与给定值不相等.
  */
 public class Ne<E> implements Parsec<E, E> {
     private E item;

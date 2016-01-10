@@ -31,13 +31,13 @@ public class ManyTilTest extends Base{
     public void TestManyTil() throws Exception {
         State<Character> state = newState("hhhhhhlhhhll");
 
-        ManyTil<Character, Character, Character> m = new ManyTil<Character, Character, Character>(
-                new Eq<Character>('h'),
-                new Eq<Character>('l')
+        ManyTill<Character, Character, Character> m = new ManyTill<>(
+                new Eq<>('h'),
+                new Eq<>('l')
         );
 
         List<Character> a = m.parse(state);
-        Assert.assertEquals(a.size(), 6);
+        Assert.assertEquals(a.size(), 3);
     }
 
 

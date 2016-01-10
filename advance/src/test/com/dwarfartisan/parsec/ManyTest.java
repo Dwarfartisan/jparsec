@@ -31,7 +31,7 @@ public class ManyTest extends Base {
     public void TestMany() throws Exception {
         State<Character> state = newState("hhello");
 
-        Many<Character, Character> m = new Many<Character, Character>(new Eq<Character>('h'));
+        Many<Character, Character> m = new Many<>(new Eq<>('h'));
 
         List<Character> a = m.parse(state);
         Assert.assertEquals(a.size(), 2);

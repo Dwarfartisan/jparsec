@@ -5,8 +5,6 @@ import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
 
-import java.io.EOFException;
-
 /**
  * NoneOf Tester.
  *
@@ -31,16 +29,17 @@ public class NoneOfTest extends Base {
     public void testParse() throws Exception {
         State<Character> state = newState("hello");
 
-        NoneOf<Character> noneof = new NoneOf<Character>(new Character[]{'s', 'b'});
+        NoneOf<Character> noneOf = new NoneOf<>(new Character[]{'s', 'b'});
 
-        Character c = noneof.parse(state);
+        Character c = noneOf.parse(state);
 
         Assert.assertEquals(c, new Character('h'));
 
         try {
             State<Character> state2 = newState("sello");
-            Character d = noneof.parse(state2);
-            Assert.fail("not matched");
+            Character d = noneOf.parse(state2);
+            String message = String.format("Expect a char none of %s  but %c", "hello", d);
+            Assert.fail(message);
         } catch (ParsecException e){
             Assert.assertTrue(true);
         }

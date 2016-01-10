@@ -4,6 +4,7 @@ import java.io.EOFException;
 
 /**
  * Created by Mars Liu on 2016-01-07.
+ * text 是特化的文本匹配算子,它期待后续的数据流是一个匹配给定字符串的字符序列,否则抛出异常.
  */
 public class Text implements Parsec<String, Character>{
     private String text;

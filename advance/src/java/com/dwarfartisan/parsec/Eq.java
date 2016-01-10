@@ -4,9 +4,10 @@ import java.io.EOFException;
 
 /**
  * Created by Mars Liu on 2016-01-03.
+ * Eq 即 equal , 判断得到的信息项是否与预期相等.
  */
 public class Eq<E> implements Parsec<E, E> {
-    E item;
+    private E item;
     @Override
     public E parse(State<E> s) throws EOFException, ParsecException {
         E re = s.next();

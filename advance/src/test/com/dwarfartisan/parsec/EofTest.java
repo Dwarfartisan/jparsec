@@ -29,7 +29,7 @@ public class EofTest extends Base {
     public void testEof() throws Exception {
         State<Character> state = newState("hello");
 
-        Eof<Character> eof = new Eof<Character>();
+        Eof<Character> eof = new Eof<>();
 
             new Text("hello").parse(state);
             Object e = eof.parse(state);

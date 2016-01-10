@@ -29,7 +29,7 @@ public class EqTest extends Base {
     public void testEq() throws Exception {
         State<Character> state = newState("hello");
 
-        Eq<Character> eq = new Eq<Character>('h');
+        Eq<Character> eq = new Eq<>('h');
         Character c = eq.parse(state);
         Assert.assertEquals(c, new Character('h'));
     }
