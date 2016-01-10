@@ -11,7 +11,7 @@ public class Eq<E> implements Parsec<E, E> {
     @Override
     public E parse(State<E> s) throws EOFException, ParsecException {
         E re = s.next();
-        if (re==item){
+        if (re.equals(item)){
             return re;
         } else {
             String message = String.format("Expect %s is equal to %s", re, item);

@@ -13,7 +13,7 @@ public class Skip1<T, E> extends Parsec<T, E> {
         parser.parse(s);
         try {
             while (true) {
-                parser.parse(s);
+                new Try<T,E>(parser).parse(s);
             }
         }catch (EOFException e) {
             return null;

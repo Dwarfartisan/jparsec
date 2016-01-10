@@ -13,7 +13,8 @@ public class Text extends Parsec<String, Character> {
         int idx = 0;
         for(Character c: this.text.toCharArray()) {
             Character data = s.next();
-            if(c != data){
+
+            if(!c.equals(data)){
                 String message = String.format("Expect %c at %d but %c", c, idx, data);
                 throw new ParsecException(s.index(), message);
             }
