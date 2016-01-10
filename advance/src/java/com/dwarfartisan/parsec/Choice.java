@@ -4,6 +4,8 @@ import java.io.EOFException;
 
 /**
  * Created by Mars Liu on 2016-01-03.
+ * Choice 算子是多路分支选择算子, choice 顺序检查所有分路,返回第一个成功的算子的解析结果.如果某个算子解析失败以后没有复位,则将其错误
+ * 信息抛出.如果所有的分路都解析失败,抛出异常.
  */
 public class Choice<T, E> implements Parsec<T, E> {
     private Parsec<T, E>[] parsecs;

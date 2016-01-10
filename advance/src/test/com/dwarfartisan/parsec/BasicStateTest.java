@@ -1,15 +1,12 @@
 package com.dwarfartisan.parsec;
 
-import com.sun.xml.internal.ws.policy.spi.AssertionCreationException;
+import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.ParseException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
 
 import java.io.EOFException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * BasicState Tester.
@@ -19,8 +16,6 @@ import java.util.List;
  * @version 1.0
  */
 public class BasicStateTest extends Base {
-
-    private String data = "It is a \"string\" for this unit test";
 
 
     @Before
@@ -37,9 +32,10 @@ public class BasicStateTest extends Base {
      *
      */
     @Test
-    public void testIndex() throws Exception {
+    public void testIndex() throws EOFException, ParseException {
+        String data = "It is a \"string\" for this unit test";
         State<Character> state = newState(data);
-        while (state.index()<data.length()){
+        while (state.index()< data.length()){
             int index = state.index();
             Character c = state.next();
             Character chr = data.charAt(index);
@@ -47,7 +43,8 @@ public class BasicStateTest extends Base {
         }
         try{
             Character failed = state.next();
-            Assert.fail("The state next at preview line should failed.");
+            String message = String.format("The state next at preview line should failed but %c.", failed);
+            Assert.fail(message);
         } catch (EOFException e) {
             Assert.assertTrue("the error is Eof", EOFException.class==e.getClass());
         }
@@ -70,9 +67,9 @@ public class BasicStateTest extends Base {
 
         int a = state.begin();
 
-        c = state.next();
-        c = state.next();
-        c = state.next();
+        state.next();
+        state.next();
+        state.next();
 
         state.rollback(a);
 
@@ -94,7 +91,7 @@ public class BasicStateTest extends Base {
 
 
         Assert.assertEquals(c,new Character('h'));
-        c = state.next();
+        state.next();
 
         state.commit(a);
 

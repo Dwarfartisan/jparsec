@@ -29,7 +29,7 @@ public class OneTest extends Base {
     public void testOne() throws Exception {
         State<Character> state = newState("hello");
 
-        One<Character> one = new One<Character>();
+        One<Character> one = new One<>();
 
         try {
             Character c = one.parse(state);

@@ -31,7 +31,7 @@ public class SepBy1Test extends Base {
     public void TestSepBy1() throws Exception {
         State<Character> state = newState("hlhlhlhlhlhll");
 
-        SepBy1<Character, Character, Character> m = new SepBy1<Character, Character, Character>(new Ch('h'),new Ch('l'));
+        SepBy1<Character, Character, Character> m = new SepBy1<>(new Ch('h'), new Ch('l'));
 
         List<Character> a = m.parse(state);
         Assert.assertEquals(a.size(), 6);
@@ -41,10 +41,10 @@ public class SepBy1Test extends Base {
         List<Character> b = m.parse(state1);
         Assert.assertEquals(b.size(), 2);
 
-        State<Character> state2 = newState("sdfsdfsdfsdf");
         try {
             List<Character> c = m.parse(state1);
-            Assert.fail();
+            String message = String.format("Expect a exception but %s", c);
+            Assert.fail(message);
         } catch (ParsecException e) {
             Assert.assertTrue(true);
         }

@@ -4,6 +4,8 @@ import java.io.EOFException;
 
 /**
  * Created by Mars Liu on 2016-01-02.
+ * BasicState 类型提供一个基本的 state 实现,它将信息序列放到一个数组中作为缓存,不保证并发安全.
+ * 如果我们要处理的数据量不至于对内存使用造成负担,也没有并发安全的需要,可以使用它.
  */
 public class BasicState<E> implements State<E> {
     private E[] buffer;
@@ -51,4 +53,5 @@ public class BasicState<E> implements State<E> {
     public BasicState(E[] buffer){
         this.buffer = buffer;
     }
+
 }

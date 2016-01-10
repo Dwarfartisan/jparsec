@@ -31,10 +31,10 @@ public class BetweenTest extends Base {
         State<Character> state = newState("hello");
 
 
-        Between<Character, Character, Character, Character> bmw = new Between<Character, Character, Character, Character>(
-                new Eq<Character>('h'),
-                new Eq<Character>('l'),
-                new Eq<Character>('e')
+        Between<Character, Character, Character, Character> bmw = new Between<>(
+                new Eq<>('h'),
+                new Eq<>('l'),
+                new Eq<>('e')
         );
 
         Character c = bmw.parse(state);

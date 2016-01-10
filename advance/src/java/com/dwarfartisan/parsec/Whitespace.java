@@ -4,6 +4,7 @@ import java.io.EOFException;
 
 /**
  * Created by Mars Liu on 2016-01-07.
+ * Whitespace 匹配空白字符
  */
 public class Whitespace implements Parsec<Character, Character>{
     @Override

@@ -5,9 +5,6 @@ import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
 
-import java.beans.Expression;
-import java.io.EOFException;
-
 /**
  * OneOf Tester.
  *
@@ -34,16 +31,17 @@ public class OneOfTest extends Base{
     public void testParse() throws Exception {
         State<Character> state = newState("hello");
 
-        OneOf<Character> oneof = new OneOf<Character>(new Character[]{'h','b'});
+        OneOf<Character> oneOf = new OneOf<>(new Character[]{'h', 'b'});
 
-        Character c = oneof.parse(state);
+        Character c = oneOf.parse(state);
 
 
         Assert.assertEquals(c,new Character('h'));
 
         try{
-            Character d = oneof.parse(state);
-            Assert.fail("not matched");
+            Character d = oneOf.parse(state);
+            String message = String.format("Expect a char in %s but %c", "hello", d);
+            Assert.fail(message);
         }catch (ParsecException e){
             Assert.assertTrue(true);
         }

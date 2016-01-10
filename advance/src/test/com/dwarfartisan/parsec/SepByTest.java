@@ -31,9 +31,9 @@ public class SepByTest extends Base {
     public void TestSepBy() throws Exception {
         State<Character> state = newState("hlhlhlhlhlhll");
 
-        SepBy<Character, Character, Character> m = new SepBy<Character, Character, Character>(
-                new Eq<Character>('h'),
-                new Eq<Character>('l')
+        SepBy<Character, Character, Character> m = new SepBy<>(
+                new Eq<>('h'),
+                new Eq<>('l')
         );
 
         List<Character> a = m.parse(state);

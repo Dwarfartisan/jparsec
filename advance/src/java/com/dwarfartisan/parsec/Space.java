@@ -4,6 +4,7 @@ import java.io.EOFException;
 
 /**
  * Created by Mars Liu on 2016-01-07.
+ * Space 匹配空格
  */
 public class Space implements Parsec<Character, Character>{
     @Override

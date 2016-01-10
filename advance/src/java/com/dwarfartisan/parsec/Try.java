@@ -1,11 +1,10 @@
 package com.dwarfartisan.parsec;
 
-import sun.reflect.annotation.ExceptionProxy;
-
 import java.io.EOFException;
 
 /**
  * Created by Mars Liu on 2016-01-03.
+ * Try 尝试执行给定算子,如果失败,先将state复位,再抛出异常.
  */
 public class Try<T, E> implements Parsec<T, E> {
     private Parsec<T, E> parsec;
