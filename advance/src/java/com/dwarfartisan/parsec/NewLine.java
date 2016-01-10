@@ -5,7 +5,7 @@ import java.io.EOFException;
 /**
  * Created by Mars Liu on 2016-01-07.
  */
-public class NewLine implements Parsec<String, Character> {
+public class Newline implements Parsec<String, Character> {
     @Override
     public String parse(State<Character> s) throws EOFException, ParsecException {
         Parsec<String, Character> r = new Try<>(new Ch('\r').then(new Return<>("\r")));
