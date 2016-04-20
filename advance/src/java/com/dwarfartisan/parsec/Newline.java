@@ -1,7 +1,5 @@
 package com.dwarfartisan.parsec;
 
-import com.sun.tools.classfile.CharacterRangeTable_attribute;
-
 import java.io.EOFException;
 
 /**

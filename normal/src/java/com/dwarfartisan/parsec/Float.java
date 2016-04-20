@@ -1,7 +1,5 @@
 package com.dwarfartisan.parsec;
 
-import sun.reflect.annotation.ExceptionProxy;
-
 import java.io.EOFException;
 import java.util.ArrayList;
 import java.util.List;
