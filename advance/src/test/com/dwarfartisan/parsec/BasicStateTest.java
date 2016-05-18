@@ -1,6 +1,5 @@
 package com.dwarfartisan.parsec;
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.ParseException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;
@@ -8,6 +7,7 @@ import org.junit.After;
 
 import java.io.EOFException;
 
+import com.dwarfartisan.parsec.ParsecException;
 /**
  * BasicState Tester.
  *
@@ -32,7 +32,7 @@ public class BasicStateTest extends Base {
      *
      */
     @Test
-    public void testIndex() throws EOFException, ParseException {
+    public void testIndex() throws EOFException, ParsecException {
         String data = "It is a \"string\" for this unit test";
         State<Character> state = newState(data);
         while (state.index()< data.length()){
