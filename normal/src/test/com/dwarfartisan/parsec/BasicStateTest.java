@@ -1,6 +1,5 @@
 package com.dwarfartisan.parsec;
 
-import com.sun.xml.internal.ws.policy.spi.AssertionCreationException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;

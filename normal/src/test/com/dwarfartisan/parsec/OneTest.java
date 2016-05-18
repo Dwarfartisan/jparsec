@@ -28,9 +28,7 @@ public class OneTest extends Base {
     @Test
     public void testOne() throws Exception {
         State<Character> state = newState("hello");
-
         One<Character> one = new One<Character>();
-
         try {
             Character c = one.parse(state);
             Assert.assertTrue(c.equals('h'));
