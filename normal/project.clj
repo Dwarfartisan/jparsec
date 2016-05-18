@@ -4,7 +4,8 @@
   :license {:name "THE MIT LICENSE"
             :url "https://opensource.org/licenses/MIT"}
 ;;  :dependencies [[junit "4.12"]]
-  :profiles {:dev {:dependencies [[junit/junit "4.11"]]}}
+  :profiles {:dev {:dependencies [[junit/junit "4.11"]]
+                   :java-source-paths ["src/java" "src/test"]}}
   :plugins [[lein-junit "1.1.8"]]
-  :java-source-paths ["src/java" "src/test"]
+  :java-source-paths ["src/java"]
   :junit ["src/test"])

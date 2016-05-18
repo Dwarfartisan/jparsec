@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Float implements Parsec<String, Character> {
     private Parsec<List<Character>, Character> parser =
-            new Choice<>(new Try<>(new Ch('-').then(new Return<List<Character>, Character>(new ArrayList<>('-')))),
+            new Choice<List<Character>, Character>(new Try<>(new Ch('-').then(new Return<List<Character>, Character>(new ArrayList<>('-')))),
                     new Return<List<Character>, Character>(new ArrayList<>()))
                     .bind((value) -> (s) -> {
                         Parsec<List<Character>, Character> numbers = new Many<>(new Digit());
