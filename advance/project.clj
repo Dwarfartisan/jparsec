@@ -7,4 +7,6 @@
                    :java-source-paths ["src/java" "src/test"]}}
   :plugins [[lein-junit "1.1.8"]]
   :java-source-paths ["src/java"]
+  :javac-options ["-target" "1.8" "-source" "1.8" "-Xlint:-options"]
   :junit ["src/test"])
+

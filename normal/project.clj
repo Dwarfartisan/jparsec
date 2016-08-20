@@ -7,5 +7,6 @@
   :profiles {:dev {:dependencies [[junit/junit "4.11"]]
                    :java-source-paths ["src/java" "src/test"]}}
   :plugins [[lein-junit "1.1.8"]]
+  :javac-options ["-target" "1.6" "-source" "1.6" "-Xlint:-options"]
   :java-source-paths ["src/java"]
   :junit ["src/test"])
