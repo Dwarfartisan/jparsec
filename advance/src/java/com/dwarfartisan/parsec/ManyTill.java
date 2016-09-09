@@ -23,6 +23,7 @@ public class ManyTill<T, L, E> implements Parsec<List<T>, E> {
             }
         }
     }
+
     public ManyTill(Parsec<T, E> parser, Parsec<L, E> til) {
         this.parser = new Try<>(parser);
         this.til = til;

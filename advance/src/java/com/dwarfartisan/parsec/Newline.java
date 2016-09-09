@@ -13,12 +13,17 @@ import java.io.EOFException;
  * -----------------
  *
  * NewLine 匹配 \n .
+ *
+ * 回到初始设计，接受任何合法的换行组合，返回 \n
+ * Modified by Mars Liu on 2016-9-9
  */
-public class Newline implements Parsec<String, Character> {
+public class Newline implements Parsec<Character, Character> {
+    private Parsec<Character, Character> prev = new Try<>(new Ch('\r'));
     private Parsec<Character, Character> parser = new Ch('\n');
     @Override
-    public String parse(State<Character> s) throws EOFException, ParsecException {
+    public Character parse(State<Character> s) throws EOFException, ParsecException {
+        prev.parse(s);
         parser.parse(s);
-        return "\n";
+        return '\n';
     }
 }

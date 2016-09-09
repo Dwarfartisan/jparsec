@@ -31,7 +31,7 @@ public class Float implements Parsec<String, Character> {
     public String parse(State<Character> s) throws EOFException, ParsecException {
         List<Character> buffer = parser.parse(s);
         StringBuilder sb = new StringBuilder();
-        buffer.stream().forEach(sb::append);
+        buffer.forEach(sb::append);
         return sb.toString();
     }
 }

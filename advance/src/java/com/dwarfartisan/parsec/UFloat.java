@@ -9,7 +9,8 @@ import java.util.List;
  * UFloat 尝试将后续信息流解析成一个表示无符号浮点数的字符串,如果匹配失败就抛出异常.
  */
 public class UFloat implements Parsec<String, Character> {
-    private Parsec<List<Character>, Character> parser = new Choice<>(new Try<>(new Many1<>(new Digit())),
+    private Parsec<List<Character>, Character> parser =
+            new Choice<List<Character>, Character>(new Try<>(new Many1<>(new Digit())),
                 new Return<>(new ArrayList<>('0'))).over(
             new Ch('.')).bind(
             (value) -> (s) -> {
@@ -21,7 +22,7 @@ public class UFloat implements Parsec<String, Character> {
     public String parse(State<Character> s) throws EOFException, ParsecException {
         List<Character> buffer = parser.parse(s);
         StringBuilder sb = new StringBuilder();
-        buffer.stream().forEach(sb::append);
+        buffer.forEach(sb::append);
         return sb.toString();
     }
 }
