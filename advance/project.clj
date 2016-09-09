@@ -1,4 +1,4 @@
-(defproject org.clojars.marsliu/jparsec-adv "0.5.0"
+(defproject org.clojars.marsliu/jparsec-adv "0.5.1"
   :description "Haskell Parsec Library's Java 1.8+ Editon"
   :url "https://github.com/Dwarfartisan/jparsec"
   :license {:name "THE MIT LICENSE"
