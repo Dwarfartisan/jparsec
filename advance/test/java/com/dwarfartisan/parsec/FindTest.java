@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.EOFException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,4 +30,14 @@ public class FindTest extends Base {
         Assert.assertEquals("find", re);
     }
 
+    @Test
+    public void failed() throws Exception {
+        State<Character> state = newState(data);
+        Parsec<String,Character> parser = new Find<>(new Text("Fail"));
+        try {
+            String re = parser.parse(state);
+        } catch (Exception e){
+            Assert.assertTrue(ParsecException.class.isInstance(e));
+        }
+    }
 }
