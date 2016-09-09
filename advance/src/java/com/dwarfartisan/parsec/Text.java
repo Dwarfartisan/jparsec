@@ -16,7 +16,7 @@ public class Text implements Parsec<String, Character>{
             Character data = s.next();
             if(c != data){
                 String message = String.format("Expect %c at %d but %c", c, idx, data);
-                throw new ParsecException(s.index(), message);
+                throw s.trap(message);
             }
             idx ++;
         }

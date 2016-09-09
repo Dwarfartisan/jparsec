@@ -14,7 +14,7 @@ public class Whitespace implements Parsec<Character, Character>{
             return re;
         } else {
             String message = String.format("Expect %c is whitespace.", re);
-            throw new ParsecException(s.index(), message);
+            throw s.trap(message);
         }
     }
 }

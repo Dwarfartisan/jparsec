@@ -15,7 +15,7 @@ public class Eq<E> implements Parsec<E, E> {
             return re;
         } else {
             String message = String.format("Expect %s is equal to %s", re, item);
-            throw new ParsecException(s.index(), message);
+            throw s.trap(message);
         }
     }
     public Eq(E item){

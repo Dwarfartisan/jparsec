@@ -11,7 +11,7 @@ public class Fail<T, E> implements Parsec<T, E> {
 
     @Override
     public T parse(State<E> s) throws EOFException, ParsecException {
-        throw new ParsecException(s.index(), message);
+        throw s.trap(message);
     }
 
     public Fail(String msg, Object...objects) {

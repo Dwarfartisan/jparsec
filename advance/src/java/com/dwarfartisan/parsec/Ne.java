@@ -14,7 +14,7 @@ public class Ne<E> implements Parsec<E, E> {
         E re = s.next();
         if (re==this.item) {
             String message = String.format("Expect a data not Equal %s", item);
-            throw new ParsecException(s.index(), message);
+            throw s.trap(message);
         }
         return re;
     }

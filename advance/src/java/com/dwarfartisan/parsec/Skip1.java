@@ -12,16 +12,7 @@ public class Skip1<T, E> implements Parsec<T, E> {
     @Override
     public T parse(State<E> s) throws EOFException, ParsecException {
         psc.parse(s);
-        int tran = s.index();
-        try {
-            while (true) {
-                tran = s.begin();
-                psc.parse(s);
-                s.commit(tran);
-            }
-        }catch (EOFException|ParsecException e){
-            s.rollback(tran);
-        }
+        new Skip<>(psc).parse(s);
         return null;
     }
 

@@ -12,7 +12,7 @@ public class Eof<E> implements Parsec<Object, E> {
         try{
             E re = s.next();
             String message = String.format("Expect eof but %s", re);
-            throw new ParsecException(s.index(), message);
+            throw s.trap(message);
         } catch (EOFException e) {
             return null;
         }

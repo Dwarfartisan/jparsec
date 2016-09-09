@@ -9,6 +9,7 @@ import java.util.Arrays;
  */
 public class OneOf<E> implements Parsec<E, E> {
     private E[] items;
+
     @Override
     public E parse(State<E> s) throws EOFException, ParsecException {
         E data = s.next();
@@ -18,8 +19,9 @@ public class OneOf<E> implements Parsec<E, E> {
             }
         }
         String message = String.format("Expect %s in %s", data, Arrays.toString(this.items));
-        throw new ParsecException(s.index(), message);
+        throw s.trap(message);
     }
+
     public OneOf(E[] items){
         this.items = items;
     }

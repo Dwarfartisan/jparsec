@@ -25,10 +25,10 @@ public class Choice<T, E> implements Parsec<T, E> {
             }
         }
         if(err == null){
-            throw new ParsecException(s.index(), "Choice Error : All parsec parser failed.");
+            throw s.trap("Choice Error : All parsec parser failed.");
         } else {
             String message = String.format("Choice Error %s, stop at %d", err, s.index());
-            throw new ParsecException(s.index(), message);
+            throw s.trap(message);
         }
     }
 

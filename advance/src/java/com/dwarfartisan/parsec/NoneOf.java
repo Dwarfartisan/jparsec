@@ -16,7 +16,7 @@ public class NoneOf<E> implements Parsec<E, E> {
         for (E item : this.items){
             if(item == re){
                 String message = String.format("expect a item not in %s but got %s", Arrays.toString(this.items), re);
-                throw new ParsecException(s.index(), message);
+                throw s.trap(message);
             }
         }
         return re;

@@ -14,7 +14,7 @@ public class Space implements Parsec<Character, Character>{
             return re;
         } else {
             String message = String.format("Expect %c is space.", re);
-            throw new ParsecException(s.index(), message);
+            throw s.trap(message);
         }
     }
 }

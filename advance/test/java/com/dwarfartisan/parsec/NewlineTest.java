@@ -21,19 +21,19 @@ public class NewlineTest extends Base {
      */
     @Test
     public void TestNewline() throws Exception {
-        State<Character> state = newState("\n\r");
+        State<Character> state = newState("\r\n");
         Parsec<String, Character> crlf = new Crlf();
 
-        String b = crlf.parse(state);
-        Assert.assertEquals(b, "\n\r");
+        String re = crlf.parse(state);
+        Assert.assertEquals(re, "\r\n");
 
         State<Character> state1 = newState("\n");
 
-        Parsec<String, Character> enter = new Newline();
+        Parsec<Character, Character> enter = new Newline();
 
-        String c = enter.parse(state1);
+        Character c = enter.parse(state1);
 
-        Assert.assertEquals(c.length(),1);
+        Assert.assertEquals(c.charValue(), '\n');
 
 
         State<Character> state2 = newState("\n\r");

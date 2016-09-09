@@ -50,6 +50,11 @@ public class BasicState<E> implements State<E> {
         }
     }
 
+    @Override
+    public ParsecException trap(String message) {
+        return new ParsecException(this.current, message);
+    }
+
     public BasicState(E[] buffer){
         this.buffer = buffer;
     }
