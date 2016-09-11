@@ -1,9 +1,8 @@
 package com.dwarfartisan.parsec;
 
 import java.io.EOFException;
-import java.util.List;
 import java.util.stream.IntStream;
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * Created by Mars Liu on 2016-01-10.
@@ -20,6 +19,6 @@ public class ChNone<Status, Tran> implements Parsec<Character, Character, Status
 
     public ChNone(String data){
         this.noneOf = new NoneOf<Character, Status, Tran>(
-                IntStream.range(0, data.length()).mapToObj(data::charAt).collect(toList()));
+                IntStream.range(0, data.length()).mapToObj(data::charAt).collect(toSet()));
     }
 }
