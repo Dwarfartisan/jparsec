@@ -6,12 +6,13 @@ import java.io.EOFException;
  * Created by Mars Liu on 2016-01-07.
  * 跳过 0 到多次重复匹配
  */
-public class Skip<T, E> implements Parsec<T, E> {
-    private Parsec<T, E> psc;
+public class Skip<T, E, Status, Tran> implements Parsec<T, E, Status, Tran> {
+    private Parsec<T, E, Status, Tran> psc;
 
     @Override
-    public T parse(State<E> s) throws EOFException, ParsecException {
-        int tran = s.index();
+    public T parse(State<E, Status, Tran> s)
+            throws EOFException, ParsecException {
+        Tran tran = s.begin();
         try {
             while (true) {
                 tran = s.begin();
@@ -24,7 +25,7 @@ public class Skip<T, E> implements Parsec<T, E> {
         return null;
     }
 
-    public Skip(Parsec<T, E> psc) {
+    public Skip(Parsec<T, E, Status, Tran> psc) {
         this.psc = psc;
     }
 }

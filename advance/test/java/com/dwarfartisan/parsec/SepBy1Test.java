@@ -29,14 +29,15 @@ public class SepBy1Test extends Base {
      */
     @Test
     public void TestSepBy1() throws Exception {
-        State<Character> state = newState("hlhlhlhlhlhll");
+        State<Character, Integer, Integer> state = newState("hlhlhlhlhlhll");
 
-        SepBy1<Character, Character, Character> m = new SepBy1<>(new Ch('h'), new Ch('l'));
+        SepBy1<Character, Character, Character, Integer, Integer> m =
+                new SepBy1<>(new Ch<>('h'), new Ch<Integer, Integer>('l'));
 
         List<Character> a = m.parse(state);
         Assert.assertEquals(a.size(), 6);
 
-        State<Character> state1 = newState("hlh,h.hlhlhll");
+        State<Character, Integer, Integer> state1 = newState("hlh,h.hlhlhll");
 
         List<Character> b = m.parse(state1);
         Assert.assertEquals(b.size(), 2);

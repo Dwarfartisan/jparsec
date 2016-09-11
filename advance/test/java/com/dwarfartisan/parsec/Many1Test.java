@@ -29,9 +29,9 @@ public class Many1Test extends Base {
      */
     @Test
     public void TestMany1() throws Exception {
-        State<Character> state = newState("ello");
+        State<Character, Integer, Integer> state = newState("ello");
 
-        Many1<Character, Character> m = new Many1<>(
+        Many1<Character, Character, Integer, Integer> m = new Many1<>(
                 new Eq<>('h')
         );
 
@@ -41,7 +41,7 @@ public class Many1Test extends Base {
         } catch (ParsecException e) {
             Assert.assertTrue(true);
         }
-        State<Character> state1 = newState("hello");
+        State<Character, Integer, Integer> state1 = newState("hello");
         List<Character> b = m.parse(state1);
         Assert.assertEquals(b.size(), 1);
     }

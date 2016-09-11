@@ -22,10 +22,8 @@ public class SkipTest extends Base {
      */
     @Test
     public void TestSkip() throws Exception {
-        State<Character> state = newState("hehlo World");
-        Skip<Character,Character> skip = new Skip<Character, Character>(
-                new Eq<Character>(new Character('h'))
-        );
+        State<Character, Integer, Integer> state = newState("hello World");
+        Skip<Character,Character, Integer, Integer> skip = new Skip<>(new Eq<>('h'));
         Character c = skip.parse(state);
         Assert.assertEquals(c,null);
 

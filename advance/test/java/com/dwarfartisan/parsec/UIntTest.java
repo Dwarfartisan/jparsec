@@ -21,9 +21,9 @@ public class UIntTest extends Base {
 
     @Test
     public void TestUInt() throws Exception {
-        State<Character> state = newState("002230");
+        State<Character, Integer, Integer> state = newState("002230");
 
-        UInt uint = new UInt();
+        UInt<Integer, Integer> uint = new UInt<>();
 
         String s = uint.parse(state);
 

@@ -7,15 +7,15 @@ import java.io.EOFException;
  * Find 算子跳过不匹配的内容，直到匹配成功或者 eof 。
  * 如果失败，Find 返回第一次开始尝试的位置和相关的 ParsecException。而非 EOFException
  */
-public class Find<T, E> implements Parsec<T, E> {
-    private  One<E> one;
-    private  Parsec<T, E> parser;
+public class Find<T, E, Status, Tran> implements Parsec<T, E, Status, Tran> {
+    private  One<E, Status, Tran> one;
+    private  Parsec<T, E, Status, Tran> parser;
     @Override
-    public T parse(State<E> s) throws ParsecException {
-        int start = s.index();
+    public T parse(State<E, Status, Tran> s) throws ParsecException {
+        Status start = s.status();
         try {
             while (true) {
-                int tran = s.begin();
+                Tran tran = s.begin();
                 try {
                     T re = parser.parse(s);
                     s.commit(tran);
@@ -31,8 +31,8 @@ public class Find<T, E> implements Parsec<T, E> {
         }
     }
 
-    public Find(Parsec<T, E> parser) {
+    public Find(Parsec<T, E, Status, Tran> parser) {
         this.parser = parser;
-        this.one = new One<E>();
+        this.one = new One<>();
     }
 }

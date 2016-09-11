@@ -28,10 +28,10 @@ public class BetweenTest extends Base {
     @Test
     public void TestBetween() throws Exception {
 
-        State<Character> state = newState("hello");
+        State<Character, Integer, Integer> state = newState("hello");
 
 
-        Between<Character, Character, Character, Character> bmw = new Between<>(
+        Between<Character, Character, Character, Character, Integer, Integer> bmw = new Between<>(
                 new Eq<>('h'),
                 new Eq<>('l'),
                 new Eq<>('e')

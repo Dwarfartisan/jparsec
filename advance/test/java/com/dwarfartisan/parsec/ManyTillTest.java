@@ -29,9 +29,9 @@ public class ManyTillTest extends Base{
      */
     @Test
     public void TestManyTill() throws Exception {
-        State<Character> state = newState("hhhhhhlhhhll");
+        State<Character, Integer, Integer> state = newState("hhhhhhlhhhll");
 
-        ManyTill<Character, Character, Character> m = new ManyTill<>(
+        ManyTill<Character, Character, Character, Integer, Integer> m = new ManyTill<>(
                 new Eq<>('h'),
                 new Eq<>('l')
         );

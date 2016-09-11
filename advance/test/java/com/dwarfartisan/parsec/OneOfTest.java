@@ -5,6 +5,10 @@ import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
 
+import java.util.List;
+import java.util.stream.IntStream;
+import static java.util.stream.Collectors.toList;
+
 /**
  * OneOf Tester.
  *
@@ -29,9 +33,11 @@ public class OneOfTest extends Base{
      */
     @Test
     public void testParse() throws Exception {
-        State<Character> state = newState("hello");
+        State<Character, Integer, Integer> state = newState("hello");
 
-        OneOf<Character> oneOf = new OneOf<>(new Character[]{'h', 'b'});
+        data = "hb";
+        List<Character> buffer = IntStream.range(0, 2).mapToObj(data::charAt).collect(toList());
+        OneOf<Character, Integer, Integer> oneOf = new OneOf<>(buffer);
 
         Character c = oneOf.parse(state);
 

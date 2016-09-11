@@ -27,11 +27,11 @@ public class EofTest extends Base {
      */
     @Test
     public void testEof() throws Exception {
-        State<Character> state = newState("hello");
+        State<Character, Integer, Integer> state = newState("hello");
 
-        Eof<Character> eof = new Eof<>();
+        Eof<Character, Character, Integer, Integer> eof = new Eof<>();
 
-            new Text("hello").parse(state);
+            new Text<Integer, Integer>("hello").parse(state);
             Object e = eof.parse(state);
         Assert.assertNull(e);
     }

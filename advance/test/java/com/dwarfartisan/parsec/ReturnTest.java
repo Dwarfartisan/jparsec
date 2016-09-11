@@ -21,8 +21,8 @@ public class ReturnTest extends Base {
      */
     @Test
     public void TestReturn() throws Exception {
-        State<Character> state = newState("hhhlo World");
-        Return<Character,Character> returns = new Return<Character, Character>(new Character('h'));
+        State<Character, Integer, Integer> state = newState("hhhlo World");
+        Return<Character,Character, Integer, Integer> returns = new Return<>('h');
         Character c = returns.parse(state);
         Assert.assertEquals(c,new Character('h'));
     }

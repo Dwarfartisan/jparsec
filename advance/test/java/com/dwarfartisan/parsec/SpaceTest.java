@@ -23,9 +23,9 @@ public class SpaceTest extends Base {
      */
     @Test
     public void TestSpace() throws Exception {
-        State<Character> state = newState(" ");
+        State<Character, Integer, Integer> state = newState(" ");
 
-        Space s = new Space();
+        Space<Integer, Integer> s = new Space();
 
         Character a =  s.parse(state);
         Assert.assertEquals(a,new Character(' '));

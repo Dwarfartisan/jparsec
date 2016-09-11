@@ -7,12 +7,11 @@ import org.junit.After;
 
 import java.io.EOFException;
 
-import com.dwarfartisan.parsec.ParsecException;
 /**
  * BasicState Tester.
  *
- * @author <Authors name>
- * @since <pre>一月 1, 2016</pre>
+ * @author Mars Liu
+ * @since 2016-09-11
  * @version 1.0
  */
 public class BasicStateTest extends Base {
@@ -32,11 +31,11 @@ public class BasicStateTest extends Base {
      *
      */
     @Test
-    public void testIndex() throws EOFException, ParsecException {
+    public void testIndex() throws Exception {
         String data = "It is a \"string\" for this unit test";
-        State<Character> state = newState(data);
-        while (state.index()< data.length()){
-            int index = state.index();
+        State<Character, Integer, Integer> state = newState(data);
+        while (state.status()< data.length()){
+            int index = state.status();
             Character c = state.next();
             Character chr = data.charAt(index);
             Assert.assertEquals(c, chr);
@@ -57,7 +56,7 @@ public class BasicStateTest extends Base {
      */
     @Test
     public void testBegin() throws Exception {
-        State<Character> state = newState("hello");
+        State<Character, Integer, Integer> state = newState("hello");
 
         Character c = state.next();
 
@@ -65,7 +64,7 @@ public class BasicStateTest extends Base {
 
         Assert.assertEquals(c,new Character('h'));
 
-        int a = state.begin();
+        Integer a = state.begin();
 
         state.next();
         state.next();
@@ -85,7 +84,7 @@ public class BasicStateTest extends Base {
      */
     @Test
     public void testCommit() throws Exception {
-        State<Character> state = newState("hello");
+        State<Character, Integer, Integer> state = newState("hello");
         int a = state.begin();
         Character c = state.next();
 
@@ -107,7 +106,7 @@ public class BasicStateTest extends Base {
      */
     @Test
     public void testRollback() throws Exception {
-        State<Character> state = newState("hello");
+        State<Character, Integer, Integer> state = newState("hello");
 
         int a = state.begin();
         Character c = state.next();
@@ -129,7 +128,7 @@ public class BasicStateTest extends Base {
      */
     @Test
     public void testNext() throws Exception {
-        State<Character> state = newState("hello");
+        State<Character, Integer, Integer> state = newState("hello");
 
 
         Character c = state.next();

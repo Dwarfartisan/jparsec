@@ -27,9 +27,9 @@ public class OneTest extends Base {
      */
     @Test
     public void testOne() throws Exception {
-        State<Character> state = newState("hello");
+        State<Character, Integer, Integer> state = newState("hello");
 
-        One<Character> one = new One<>();
+        One<Character, Integer, Integer> one = new One<>();
 
         try {
             Character c = one.parse(state);

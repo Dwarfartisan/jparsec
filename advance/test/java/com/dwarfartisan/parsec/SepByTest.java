@@ -29,9 +29,9 @@ public class SepByTest extends Base {
      */
     @Test
     public void TestSepBy() throws Exception {
-        State<Character> state = newState("hlhlhlhlhlhll");
+        State<Character, Integer, Integer> state = newState("hlhlhlhlhlhll");
 
-        SepBy<Character, Character, Character> m = new SepBy<>(
+        SepBy<Character, Character, Character, Integer, Integer> m = new SepBy<>(
                 new Eq<>('h'),
                 new Eq<>('l')
         );

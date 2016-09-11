@@ -23,9 +23,9 @@ public class TextTest extends Base {
     @Test
     public void TestText() throws Exception {
 
-        State<Character> state = newState("Hello World");
+        State<Character, Integer, Integer> state = newState("Hello World");
 
-        Text s = new Text("Hello World");
+        Text<Integer, Integer> s = new Text<>("Hello World");
 
         String a =  s.parse(state);
 

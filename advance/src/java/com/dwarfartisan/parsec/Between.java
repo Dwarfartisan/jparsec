@@ -7,33 +7,36 @@ import java.io.EOFException;
  * Between 算子等效于 open.then(p).over(close); 若 (open, parser, close) 组合子顺序解析成功,返回 parser 的解析结果.
  * 遵循 Haskell Parsec 的定义,我们将参数顺序设定为 between(open, close, parser),并提供了 curry 化的 In 子类型.
  */
-public class Between<T, E, O, C> implements Parsec<T, E> {
-    private Parsec<O, E> open;
-    private Parsec<C, E> close;
-    private Parsec<T, E> parsec;
+public class Between<T, E, O, C, Status, Tran> implements Parsec<T, E, Status, Tran> {
+    private Parsec<O, E, Status, Tran> open;
+    private Parsec<C, E, Status, Tran> close;
+    private Parsec<T, E, Status, Tran> parsec;
 
     @Override
-    public T parse(State<E> s) throws EOFException, ParsecException {
+    public T parse(State<E, Status, Tran> s)
+            throws EOFException, ParsecException {
         open.parse(s);
         T re = parsec.parse(s);
         close.parse(s);
         return re;
     }
 
-    public Between(Parsec<O, E> open, Parsec<C, E> close, Parsec<T, E> parsec) {
+    public Between(Parsec<O, E, Status, Tran> open,
+                   Parsec<C, E, Status, Tran> close,
+                   Parsec<T, E, Status, Tran> parsec) {
         this.open = open;
         this.close = close;
         this.parsec = parsec;
     }
 
-    static public class In<T, E, O, C> {
-        private Parsec<O, E> open;
-        private Parsec<C, E> close;
-        public In(Parsec<O, E> open, Parsec<C, E> close) {
+    static public class In<T, E, O, C, Status, Tran> {
+        private Parsec<O, E, Status, Tran> open;
+        private Parsec<C, E, Status, Tran> close;
+        public In(Parsec<O, E, Status, Tran> open, Parsec<C, E, Status, Tran> close) {
             this.open = open;
             this.close = close;
         }
-        public Parsec<T, E> pack(Parsec<T, E> parser) {
+        public Parsec<T, E, Status, Tran> pack(Parsec<T, E, Status, Tran> parser) {
             return new Between<>(this.open, this.close, parser);
         }
     }

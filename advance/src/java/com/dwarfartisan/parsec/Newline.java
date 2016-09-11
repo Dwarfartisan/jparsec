@@ -12,10 +12,11 @@ import java.io.EOFException;
  * modify by zhaonf on 2016-1-10
  * -----------------
  */
-public class Newline implements Parsec<Character, Character> {
-    private Parsec<Character, Character> parser = new Ch('\n');
+public class Newline<Status, Tran> implements Parsec<Character, Character, Status, Tran> {
+    private Parsec<Character, Character, Status, Tran> parser = new Ch<>('\n');
     @Override
-    public Character parse(State<Character> s) throws EOFException, ParsecException {
+    public Character parse(State<Character, Status, Tran> s)
+            throws EOFException, ParsecException {
         parser.parse(s);
         return '\n';
     }

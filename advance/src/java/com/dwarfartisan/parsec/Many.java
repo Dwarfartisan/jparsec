@@ -8,11 +8,11 @@ import java.util.List;
  * Created by Mars Liu on 2016-01-03.
  * Many 算子匹配给定算子0到多次.
  */
-public class Many<T, E> implements Parsec<List<T>, E> {
-    private Parsec<T, E> parsec;
+public class Many<T, E, Status, Tran> implements Parsec<List<T>, E, Status, Tran> {
+    private Parsec<T, E, Status, Tran> parsec;
 
     @Override
-    public List<T> parse(State<E> s) throws EOFException, ParsecException {
+    public List<T> parse(State<E, Status, Tran> s) throws EOFException, ParsecException {
         List<T> re = new ArrayList<>();
         try{
             while (true){
@@ -23,7 +23,7 @@ public class Many<T, E> implements Parsec<List<T>, E> {
         }
     }
 
-    public Many(Parsec<T, E> parsec) {
+    public Many(Parsec<T, E, Status, Tran> parsec) {
         this.parsec = parsec;
     }
 }
