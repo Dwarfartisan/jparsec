@@ -2,6 +2,7 @@ package com.dwarfartisan.parsec;
 
 import java.io.EOFException;
 import java.util.List;
+import java.util.Set;
 
 import static java.util.stream.Collectors.joining;
 
@@ -10,7 +11,7 @@ import static java.util.stream.Collectors.joining;
  * NoneOf 即 none of ,它期待得到的信息项与给定的任何项都不匹配,否则返回错误.
  */
 public class NoneOf<E, Status, Tran> implements Parsec<E, E, Status, Tran> {
-    private List<E> items;
+    private Set<E> items;
 
     @Override
     public E parse(State<E, Status, Tran> s) throws EOFException, ParsecException {
@@ -25,7 +26,7 @@ public class NoneOf<E, Status, Tran> implements Parsec<E, E, Status, Tran> {
         return re;
     }
 
-    public NoneOf(List<E> items){
+    public NoneOf(Set<E> items){
         this.items = items;
     }
 }

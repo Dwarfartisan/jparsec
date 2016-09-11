@@ -1,7 +1,7 @@
 package com.dwarfartisan.parsec;
 
 import java.io.EOFException;
-import java.util.List;
+import java.util.Set;
 import static java.util.stream.Collectors.joining;
 
 /**
@@ -9,7 +9,7 @@ import static java.util.stream.Collectors.joining;
  * OneOf 即 one of ,给定项中任何一个匹配成功即视为成功,否则抛出错误.
  */
 public class OneOf<E, Status, Tran> implements Parsec<E, E, Status, Tran> {
-    private List<E> items;
+    private Set<E> items;
 
     @Override
     public E parse(State<E, Status, Tran> s)
@@ -25,7 +25,7 @@ public class OneOf<E, Status, Tran> implements Parsec<E, E, Status, Tran> {
         throw s.trap(message);
     }
 
-    public OneOf(List<E> items){
+    public OneOf(Set<E> items){
         this.items = items;
     }
 }

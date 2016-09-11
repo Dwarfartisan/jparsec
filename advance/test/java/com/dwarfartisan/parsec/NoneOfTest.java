@@ -6,8 +6,11 @@ import org.junit.Before;
 import org.junit.After;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import static java.util.stream.Collectors.toList;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toSet;
 
 /**
  * NoneOf Tester.
@@ -33,9 +36,7 @@ public class NoneOfTest extends Base {
     public void simpleOK() throws Exception {
         State<Character, Integer, Integer> state = newState("hello");
 
-        String data = "kfs";
-        List<Character> buffer = IntStream.range(0, data.length()).mapToObj(data::charAt).collect(toList());
-        NoneOf<Character, Integer, Integer> noneOf = new NoneOf<>(buffer);
+        NoneOf<Character, Integer, Integer> noneOf = new NoneOf<>(Stream.of('k', 'o', 'f').collect(toSet()));
         Character c = noneOf.parse(state);
 
         Assert.assertEquals(c, new Character('h'));
@@ -43,14 +44,12 @@ public class NoneOfTest extends Base {
 
     @Test
     public void simpleFail() throws Exception {
-        String data = "kfs";
-        List<Character> buffer = IntStream.range(0, data.length()).mapToObj(data::charAt).collect(toList());
-        NoneOf<Character, Integer, Integer> noneOf = new NoneOf<>(buffer);
+        NoneOf<Character, Integer, Integer> noneOf = new NoneOf<>(Stream.of('k', 'f', 's').collect(toSet()));
         try {
             String content = "sound";
             State<Character, Integer, Integer> state2 = newState(content);
             Character d = noneOf.parse(state2);
-            String message = String.format("Expect none of \"%s\" failed  but '%c'", data, d);
+            String message = String.format("Expect none of \"%s\" failed  but '%c'", "kfs", d);
             Assert.fail(message);
         } catch (ParsecException e){
             Assert.assertTrue(true);
