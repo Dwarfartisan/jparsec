@@ -1,7 +1,6 @@
 package com.dwarfartisan.parsec;
 
 import java.io.EOFException;
-import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.IntStream;
 import static java.util.stream.Collectors.toSet;

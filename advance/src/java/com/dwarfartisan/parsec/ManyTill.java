@@ -10,13 +10,13 @@ import java.util.List;
  */
 public class ManyTill<T, L, E, Status, Tran> implements Parsec<List<T>, E, Status, Tran> {
     private Parsec<T, E, Status, Tran> parser;
-    private Parsec<L, E, Status, Tran> til;
+    private Parsec<L, E, Status, Tran> end;
     @Override
     public List<T> parse(State<E, Status, Tran> s) throws EOFException, ParsecException {
         ArrayList<T> re = new ArrayList<>();
         while (true) {
             try {
-                til.parse(s);
+                end.parse(s);
                 return re;
             } catch (EOFException | ParsecException e) {
                 re.add(parser.parse(s));
@@ -24,8 +24,8 @@ public class ManyTill<T, L, E, Status, Tran> implements Parsec<List<T>, E, Statu
         }
     }
 
-    public ManyTill(Parsec<T, E, Status, Tran> parser, Parsec<L, E, Status, Tran> til) {
+    public ManyTill(Parsec<T, E, Status, Tran> parser, Parsec<L, E, Status, Tran> end) {
         this.parser = new Try<>(parser);
-        this.til = til;
+        this.end = end;
     }
 }

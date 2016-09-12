@@ -6,9 +6,9 @@ import java.util.List;
 
 /**
  * Created by Mars Liu on 2016-01-08.
- * Float 尝试将后续的信息解析为 Float ,直到第一个无效信息为止.如果获取的信息不足以组成一个有效的浮点数,抛出异常.
+ * Decimal 尝试将后续的信息解析为 Decimal ,直到第一个无效信息为止.如果获取的信息不足以组成一个有效的浮点数,抛出异常.
  */
-public class Float<Status, Tran> implements Parsec<String, Character, Status, Tran> {
+public class Decimal<Status, Tran> implements Parsec<String, Character, Status, Tran> {
     private Parsec<List<Character>, Character, Status, Tran> parser =
             new Choice<>(new Try<>(new Ch<Status, Tran>('-').then(new Return<>(
                     new ArrayList<>('-')))),
