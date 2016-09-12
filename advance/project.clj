@@ -1,4 +1,4 @@
-(defproject org.clojars.marsliu/jparsec-adv "0.6.6"
+(defproject org.clojars.marsliu/jparsec-adv "0.6.7-SNAPSHOT"
   :name "JParsec"
   :description "Haskell Parsec Library's Java 1.8+ Editon"
   :url "https://github.com/Dwarfartisan/jparsec"
@@ -9,5 +9,5 @@
   :plugins [[lein-junit "1.1.8"]]
   :java-source-paths ["src/java"]
   ;; :javac-options ["-target" "1.8" "-source" "1.8" "-Xlint:-options"]
-  :javac-options ["-target" "1.8" "-source" "1.8" "-Xlint:unchecked"]
+  :javac-options ["-target" "1.8" "-source" "1.8" "-Xlint:unchecked" "-Xlint:varargs"]
   :junit ["test/java"])
