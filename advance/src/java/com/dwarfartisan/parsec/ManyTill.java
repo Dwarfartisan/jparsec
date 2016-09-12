@@ -3,6 +3,7 @@ package com.dwarfartisan.parsec;
 import java.io.EOFException;
 import java.util.ArrayList;
 import java.util.List;
+import static com.dwarfartisan.parsec.Combinator.attempt;
 
 /**
  * Created by Mars Liu on 2016-01-03.
@@ -16,7 +17,7 @@ public class ManyTill<T, L, E, Status, Tran> implements Parsec<List<T>, E, Statu
         ArrayList<T> re = new ArrayList<>();
         while (true) {
             try {
-                end.parse(s);
+                attempt(end).parse(s);
                 return re;
             } catch (EOFException | ParsecException e) {
                 re.add(parser.parse(s));

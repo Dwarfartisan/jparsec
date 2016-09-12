@@ -10,9 +10,8 @@ import java.util.List;
 /**
  * ManyTil Tester.
  *
- * @author <Authors name>
- * @version 1.0
- * @since <pre>一月 9, 2016</pre>
+ * @author Mars Liu
+ * @since 2016-09-12
  */
 public class ManyTillTest extends Base{
 
@@ -37,7 +36,7 @@ public class ManyTillTest extends Base{
         );
 
         List<Character> a = m.parse(state);
-        Assert.assertEquals(a.size(), 3);
+        Assert.assertEquals(a.size(), 6);
     }
 
 
