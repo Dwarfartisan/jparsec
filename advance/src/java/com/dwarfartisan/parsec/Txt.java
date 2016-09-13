@@ -1,7 +1,10 @@
 package com.dwarfartisan.parsec;
 
+import java.util.List;
+
 /**
- * Created by march on 16/9/12.
+ * Created by Mars Liu on 16/9/12.
+ * Text Parsec Utils
  */
 public class Txt {
     public static <Status, Tran> Parsec<Character, Character, Status, Tran> ch(char value) {
@@ -66,5 +69,9 @@ public class Txt {
 
     public static <Status, Tran> Parsec<String, Character, Status, Tran> text(String value) {
         return new Text<Status, Tran>(value);
+    }
+    
+    public static <Status, Tran> Binder<List<Character>, String, Character, Status, Tran> joining() {
+        return new JoinText<>();
     }
 }

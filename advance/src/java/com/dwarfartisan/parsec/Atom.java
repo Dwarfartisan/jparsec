@@ -23,19 +23,19 @@ public class Atom {
         return new Fail<T, E, Status, Tran>(message, objects);
     }
 
-    public static <E, Status, Tran> Parsec<E, E, Status, Tran> Eq(E item) {
+    public static <E, Status, Tran> Parsec<E, E, Status, Tran> eq(E item) {
         return new Eq<E, Status, Tran>(item);
     }
 
-    public static <E, Status, Tran> Parsec<E, E, Status, Tran> Ne(E item) {
+    public static <E, Status, Tran> Parsec<E, E, Status, Tran> ne(E item) {
         return new Ne<E, Status, Tran>(item);
     }
 
-    public static <E, Status, Tran> Parsec<E, E, Status, Tran> OneOf(Set<E> data) {
+    public static <E, Status, Tran> Parsec<E, E, Status, Tran> oneOf(Set<E> data) {
         return new OneOf<>(data);
     }
 
-    public static <E, Status, Tran> Parsec<E, E, Status, Tran> NoneOf(Set<E> data) {
+    public static <E, Status, Tran> Parsec<E, E, Status, Tran> noneOf(Set<E> data) {
         return new NoneOf<>(data);
     }
 }
