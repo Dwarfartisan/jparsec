@@ -71,7 +71,7 @@ public class Txt {
         return new Text<Status, Tran>(value);
     }
     
-    public static <Status, Tran> Binder<List<Character>, String, Character, Status, Tran> joining() {
+    public static <E, Status, Tran> Binder<List<Character>, String, E, Status, Tran> joining() {
         return new JoinText<>();
     }
 }
