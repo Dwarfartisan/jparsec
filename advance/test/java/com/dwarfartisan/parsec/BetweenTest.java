@@ -8,9 +8,9 @@ import org.junit.After;
 /**
  * Between Tester.
  *
- * @author <Authors name>
- * @version 1.0
- * @since <pre>一月 9, 2016</pre>
+ * @author Mars Liu
+ *
+ *
  */
 public class BetweenTest extends Base {
 
@@ -26,7 +26,7 @@ public class BetweenTest extends Base {
      * Method: parse(State<E> s)
      */
     @Test
-    public void TestBetween() throws Exception {
+    public void simple() throws Exception {
 
         State<Character, Integer, Integer> state = newState("hello");
 
@@ -38,16 +38,23 @@ public class BetweenTest extends Base {
         );
 
         Character c = bmw.parse(state);
-        Assert.assertEquals(c, new Character('e'));
-
+        Assert.assertTrue(c=='e');
     }
 
-    /**
-     * Method: use(P<T, E> parser)
-     */
     @Test
-    public void testUse() throws Exception {
-//TODO: Test goes here...
+    public void brackets() throws Exception {
+
+        State<Character, Integer, Integer> state = newState("[hello]");
+
+
+        Parsec<String, Character, Integer, Integer> parser = new Between<>(
+                new Ch<>('['),
+                new Ch<>(']'),
+                new Many1<>(new Ne<Character, Integer, Integer>(']'))
+        ).bind(new JoinText<>());
+
+        String re = parser.parse(state);
+        Assert.assertTrue(re.equals("hello"));
     }
 
 

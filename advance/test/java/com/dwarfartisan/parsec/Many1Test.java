@@ -7,12 +7,12 @@ import org.junit.After;
 
 import java.util.List;
 
+import static com.dwarfartisan.parsec.Txt.joining;
+
 /**
  * Many1 Tester.
  *
- * @author <Authors name>
- * @version 1.0
- * @since <pre>一月 9, 2016</pre>
+ * @author Mars Liu
  */
 public class Many1Test extends Base {
 
@@ -24,11 +24,8 @@ public class Many1Test extends Base {
     public void after() throws Exception {
     }
 
-    /**
-     * Method: parse(State<E> s)
-     */
     @Test
-    public void TestMany1() throws Exception {
+    public void fail() throws Exception {
         State<Character, Integer, Integer> state = newState("ello");
 
         Many1<Character, Character, Integer, Integer> m = new Many1<>(
@@ -41,9 +38,23 @@ public class Many1Test extends Base {
         } catch (ParsecException e) {
             Assert.assertTrue(true);
         }
-        State<Character, Integer, Integer> state1 = newState("hello");
-        List<Character> b = m.parse(state1);
-        Assert.assertEquals(b.size(), 1);
     }
 
+    @Test
+    public void one() throws Exception {
+        Parsec<String, Character, Integer, Integer> m =
+                new Many1<>(new Eq<Character, Integer, Integer>('h')).bind(joining());
+        State<Character, Integer, Integer> state1 = newState("hello");
+        String re = m.parse(state1);
+        Assert.assertEquals(re, "h");
+    }
+
+    @Test
+    public void all() throws Exception {
+        Parsec<String, Character, Integer, Integer> parser =
+                new Many1<>(new One<Character, Integer, Integer>()).bind(joining());
+        State<Character, Integer, Integer> state1 = newState("hello");
+        String re = parser.parse(state1);
+        Assert.assertEquals(re, "hello");
+    }
 } 

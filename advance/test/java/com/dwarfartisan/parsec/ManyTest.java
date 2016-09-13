@@ -10,9 +10,7 @@ import java.util.List;
 /**
  * Many Tester.
  *
- * @author <Authors name>
- * @version 1.0
- * @since <pre>一月 9, 2016</pre>
+ * @author Mars Liu
  */
 public class ManyTest extends Base {
 
@@ -28,7 +26,7 @@ public class ManyTest extends Base {
      * Method: parse(State<E> s)
      */
     @Test
-    public void TestMany() throws Exception {
+    public void simple() throws Exception {
         State<Character, Integer, Integer> state = newState("hhello");
 
         Many<Character, Character, Integer, Integer> m = new Many<>(new Eq<>('h'));
@@ -36,6 +34,4 @@ public class ManyTest extends Base {
         List<Character> a = m.parse(state);
         Assert.assertEquals(a.size(), 2);
     }
-
-
-} 
+}

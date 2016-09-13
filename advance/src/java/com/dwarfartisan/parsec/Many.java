@@ -24,6 +24,6 @@ public class Many<T, E, Status, Tran> implements Parsec<List<T>, E, Status, Tran
     }
 
     public Many(Parsec<T, E, Status, Tran> parsec) {
-        this.parsec = parsec;
+        this.parsec = new Try<>(parsec);
     }
 }
