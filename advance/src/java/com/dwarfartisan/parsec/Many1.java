@@ -20,7 +20,7 @@ public class Many1<T, E, Status, Tran> implements Parsec<List<T>, E, Status, Tra
             while (true){
                 re.add(p.parse(s));
             }
-        } catch (EOFException|ParsecException e){
+        } catch (Exception e){
             return re;
         }
     }

@@ -18,7 +18,7 @@ public class Many<T, E, Status, Tran> implements Parsec<List<T>, E, Status, Tran
             while (true){
                 re.add(this.parsec.parse(s));
             }
-        } catch (EOFException|ParsecException e){
+        } catch (Exception e){
             return re;
         }
     }
