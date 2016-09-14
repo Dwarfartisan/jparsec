@@ -28,7 +28,7 @@ public class Choice<T, E, Status, Tran> implements Parsec<T, E, Status, Tran> {
         if(err == null){
             throw s.trap("Choice Error : All parsec parser failed.");
         } else {
-            String message = String.format("Choice Error %s, stop at %d", err, s.status());
+            String message = String.format("Choice Error %s, stop at %s", err, s.status());
             throw s.trap(message);
         }
     }
