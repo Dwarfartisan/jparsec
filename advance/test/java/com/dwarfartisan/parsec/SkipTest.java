@@ -6,9 +6,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by zhaonf on 16/1/10.
- */
+import static com.dwarfartisan.parsec.Combinator.skip;
+
+
 public class SkipTest extends Base {
     @Before
     public void before() throws Exception {
@@ -21,21 +21,46 @@ public class SkipTest extends Base {
      * Method: parse(State<E> s)
      */
     @Test
-    public void TestSkip() throws Exception {
+    public void oneSkip() throws Exception {
         State<Character, Integer, Integer> state = newState("hello World");
-        Skip<Character,Character, Integer, Integer> skip = new Skip<>(new Eq<>('h'));
-        Character c = skip.parse(state);
-        Assert.assertEquals(c,null);
+        Skip<Character, Character, Integer, Integer> skip = new Skip<>(new Eq<>('h'));
+        skip.parse(state);
 
-        Character d = state.next();
-
-        Assert.assertEquals(d,new Character('e'));
-
-        Character e = skip.parse(state);
-        Assert.assertEquals(e,null);
-        Character f = state.next();
-
-        Assert.assertEquals(f,new Character('l'));
+        Assert.assertTrue("Now state should skip first item.", state.status() == 1);
     }
 
+    @Test
+    public void stopAtStart() throws Exception {
+        State<Character, Integer, Integer> state = newState("hello World");
+        Skip<Character, Character, Integer, Integer> skip = new Skip<>(new Eq<>('e'));
+        skip.parse(state);
+
+        Assert.assertTrue("Now state should stop before first item.", state.status() == 0);
+    }
+
+    /**
+     * Check skip space or tab at string start.
+     * @throws Exception
+     */
+    @Test
+    public void skipSpaces() throws Exception {
+        State<Character, Integer, Integer> state = newState("\t\t \thello World");
+        Parsec<Character, Character, Integer, Integer> spaces = skip(new ChIn<>(" \t"));
+        spaces.parse(state);
+
+        Assert.assertTrue("Now state should stop after four characters what space or tab.", state.status() == 4);
+    }
+
+    /**
+     * Check skip nothing at string start.
+     * @throws Exception
+     */
+    @Test
+    public void skipNothing() throws Exception {
+        State<Character, Integer, Integer> state = newState("\nhello World");
+        Parsec<Character, Character, Integer, Integer> spaces = skip(new ChIn<>(" \t"));
+        spaces.parse(state);
+
+        Assert.assertTrue("Now state should stop at start.", state.status() == 0);
+    }
 }

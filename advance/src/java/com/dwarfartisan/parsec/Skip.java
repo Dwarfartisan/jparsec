@@ -1,7 +1,5 @@
 package com.dwarfartisan.parsec;
 
-import sun.reflect.annotation.ExceptionProxy;
-
 import java.io.EOFException;
 
 /**
@@ -14,14 +12,14 @@ public class Skip<T, E, Status, Tran> implements Parsec<T, E, Status, Tran> {
     @Override
     public T parse(State<E, Status, Tran> s)
             throws EOFException, ParsecException {
-        Tran tran = s.begin();
+        Tran tran = null;
         try {
             while (true) {
                 tran = s.begin();
                 psc.parse(s);
                 s.commit(tran);
             }
-        }catch (Exception e){
+        } catch (Exception e){
             s.rollback(tran);
         }
         return null;

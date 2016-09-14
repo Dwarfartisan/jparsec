@@ -4,10 +4,8 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.hamcrest.core.IsInstanceOf;
 
-/**
- * Created by zhaonf on 16/1/10.
- */
 public class SpaceTest extends Base {
 
     @Before
@@ -22,12 +20,22 @@ public class SpaceTest extends Base {
      * Method: parse(State<E> s)
      */
     @Test
-    public void TestSpace() throws Exception {
+    public void simpleSpace() throws Exception {
         State<Character, Integer, Integer> state = newState(" ");
-
-        Space<Integer, Integer> s = new Space<>();
-
+        Parsec<Character, Character, Integer, Integer> s = new Space<>();
         Character a =  s.parse(state);
-        Assert.assertEquals(a,new Character(' '));
+        Assert.assertEquals(a.charValue(), ' ');
+    }
+
+    @Test
+    public void fail() throws Exception {
+        State<Character, Integer, Integer> state = newState("\t");
+        Parsec<Character, Character, Integer, Integer> s = new Space<>();
+        try {
+            s.parse(state);
+            Assert.fail("Space parse tab char should failed.");
+        } catch (Exception e) {
+            Assert.assertThat("We should catch a ParsecException.", e, IsInstanceOf.instanceOf(ParsecException.class));
+        }
     }
 }

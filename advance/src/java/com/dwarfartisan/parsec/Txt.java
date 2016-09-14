@@ -43,7 +43,7 @@ public class Txt {
         return new UInt<>();
     }
 
-    public static <Status, Tran> Parsec<String, Character, Status, Tran> lineEnd() {
+    public static <Status, Tran> Parsec<String, Character, Status, Tran> eol() {
         return new EndOfLine<>();
     }
 

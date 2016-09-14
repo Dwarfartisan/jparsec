@@ -15,11 +15,10 @@ public class OneOf<E, Status, Tran> implements Parsec<E, E, Status, Tran> {
     public E parse(State<E, Status, Tran> s)
             throws EOFException, ParsecException {
         E data = s.next();
-        for (E item: this.items) {
-            if (data == item){
-                return data;
-            }
+        if(items.contains(data)) {
+            return data;
         }
+
         String message = String.format("Expect %s in [%s]", data,
                 this.items.stream().map(x->x.toString()).collect(joining(", ")));
         throw s.trap(message);
