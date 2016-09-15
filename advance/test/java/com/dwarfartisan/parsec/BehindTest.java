@@ -1,11 +1,14 @@
 package com.dwarfartisan.parsec;
 
+import static com.dwarfartisan.parsec.Txt.space;
 import org.hamcrest.core.IsEqual;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
  * Created by Mars Liu on 16/9/15.
+ *
+ * Tests About look behind.
  */
 public class BehindTest extends Base {
 
@@ -19,5 +22,17 @@ public class BehindTest extends Base {
 
         assertEquals(re, "this");
         assertThat("Expect status stop after this but is. ", state.status(), IsEqual.equalTo(4));
+    }
+
+    @Test
+    public void result() throws Exception{
+        State<Character, Integer, Integer> state = newState("this is a string data.");
+        Parsec<String, Character, Integer, Integer> parser =
+                new Text<Integer, Integer>("this").then(space()).then(new Behind<>(new Text<>("is")));
+
+        String re = parser.parse(state);
+
+        assertEquals(re, "is");
+        assertThat("Expect status stop after this (5) but is. ", state.status(), IsEqual.equalTo(5));
     }
 }

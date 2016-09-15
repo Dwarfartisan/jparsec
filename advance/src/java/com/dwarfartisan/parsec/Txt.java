@@ -51,7 +51,7 @@ public class Txt {
         return new Newline<>();
     }
 
-    public static <Status, Tran> Parsec<Character, Character, Status, Tran> Space() {
+    public static <Status, Tran> Parsec<Character, Character, Status, Tran> space() {
         return new Space<>();
     }
 
