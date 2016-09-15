@@ -3,7 +3,7 @@ package com.dwarfartisan.parsec;
 import java.util.List;
 /**
  * Created by march on 16/9/12.
- * helper toolbox for combinators.
+ * helper toolbox for combinator.
  */
 public class Combinator {
     public static <T, E, Status, Tran> Parsec<T, E, Status, Tran> attempt(Parsec<T, E, Status, Tran> parser) {
