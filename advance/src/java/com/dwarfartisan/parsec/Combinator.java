@@ -3,10 +3,15 @@ package com.dwarfartisan.parsec;
 import java.util.List;
 /**
  * Created by march on 16/9/12.
+ * helper toolbox for combinators.
  */
 public class Combinator {
     public static <T, E, Status, Tran> Parsec<T, E, Status, Tran> attempt(Parsec<T, E, Status, Tran> parser) {
         return new Try<>(parser);
+    }
+
+    public static <T, E, Status, Tran> Parsec<T, E, Status, Tran> behind(Parsec<T, E, Status, Tran> parser) {
+        return new Behind<>(parser);
     }
 
     public static <T, E, Status, Tran> Parsec<T, E, Status, Tran> choice(Parsec<T, E, Status, Tran> ... parsers) {
