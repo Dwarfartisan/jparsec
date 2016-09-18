@@ -12,13 +12,13 @@ import static org.junit.Assert.*;
  *
  * Tests About look behind.
  */
-public class BehindTest extends Base {
+public class AheadTest extends Base {
 
     @Test
     public void simple() throws Exception{
         State<Character, Integer, Integer> state = newState("this is a string data.");
         Parsec<String, Character, Integer, Integer> parser =
-                new Text<Integer, Integer>("this").over(new Behind<>(new Text<>(" is")));
+                new Text<Integer, Integer>("this").over(new Ahead<>(new Text<>(" is")));
 
         String re = parser.parse(state);
 
@@ -30,7 +30,7 @@ public class BehindTest extends Base {
     public void result() throws Exception{
         State<Character, Integer, Integer> state = newState("this is a string data.");
         Parsec<String, Character, Integer, Integer> parser =
-                new Text<Integer, Integer>("this").then(space()).then(new Behind<>(new Text<>("is")));
+                new Text<Integer, Integer>("this").then(space()).then(new Ahead<>(new Text<>("is")));
 
         String re = parser.parse(state);
 
@@ -42,7 +42,7 @@ public class BehindTest extends Base {
     public void fail() throws Exception{
         State<Character, Integer, Integer> state = newState("this is a string.");
         Parsec<String, Character, Integer, Integer> parser =
-                new Text<Integer, Integer>("this").then(space()).then(new Behind<>(new Text<>(" is")));
+                new Text<Integer, Integer>("this").then(space()).then(new Ahead<>(new Text<>(" is")));
 
         try {
             String re = parser.parse(state);

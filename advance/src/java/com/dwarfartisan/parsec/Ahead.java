@@ -4,10 +4,10 @@ import java.io.EOFException;
 
 /**
  * Created by Mars Liu on 16/9/15.
- * Behind look forward state and try to match parser.
- * Behind return the parser data or fail and rollback state whatever
+ * Ahead look forward state and try to match parser.
+ * Ahead return the parser data or fail and rollback state whatever
  */
-public class Behind<T, E, Status, Tran> implements Parsec<T, E, Status, Tran> {
+public class Ahead<T, E, Status, Tran> implements Parsec<T, E, Status, Tran> {
     Parsec<T, E, Status, Tran> parser;
 
     @Override
@@ -20,7 +20,7 @@ public class Behind<T, E, Status, Tran> implements Parsec<T, E, Status, Tran> {
         }
     }
 
-    public Behind(Parsec<T, E, Status, Tran> parser){
+    public Ahead(Parsec<T, E, Status, Tran> parser){
         this.parser = parser;
     }
 }

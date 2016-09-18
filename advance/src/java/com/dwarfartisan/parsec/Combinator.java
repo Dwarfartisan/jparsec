@@ -10,8 +10,8 @@ public class Combinator {
         return new Try<>(parser);
     }
 
-    public static <T, E, Status, Tran> Parsec<T, E, Status, Tran> behind(Parsec<T, E, Status, Tran> parser) {
-        return new Behind<>(parser);
+    public static <T, E, Status, Tran> Parsec<T, E, Status, Tran> ahead(Parsec<T, E, Status, Tran> parser) {
+        return new Ahead<>(parser);
     }
 
     public static <T, E, Status, Tran> Parsec<T, E, Status, Tran> choice(Parsec<T, E, Status, Tran> ... parsers) {
