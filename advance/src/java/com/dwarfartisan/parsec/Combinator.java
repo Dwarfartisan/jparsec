@@ -1,6 +1,8 @@
 package com.dwarfartisan.parsec;
 
 import java.util.List;
+import java.util.Optional;
+
 /**
  * Created by march on 16/9/12.
  * helper toolbox for combinator.
@@ -57,5 +59,9 @@ public class Combinator {
                                                                                 Parsec<C, E, Status, Tran> close,
                                                                                 Parsec<T, E, Status, Tran> parser){
         return new Between<>(open, close, parser);
+    }
+
+    public static <T, E, Status, Tran> Parsec<Optional<T>, E, Status, Tran> option(Parsec<T, E, Status, Tran> parser){
+        return new Option<>(parser);
     }
 }
