@@ -24,11 +24,11 @@ public class Atom {
     }
 
     public static <E, Status, Tran> Parsec<E, E, Status, Tran> eq(E item) {
-        return new Eq<E, Status, Tran>(item);
+        return new Eq<>(item);
     }
 
     public static <E, Status, Tran> Parsec<E, E, Status, Tran> ne(E item) {
-        return new Ne<E, Status, Tran>(item);
+        return new Ne<>(item);
     }
 
     public static <E, Status, Tran> Parsec<E, E, Status, Tran> oneOf(Set<E> data) {

@@ -43,11 +43,11 @@ public class Txt {
         return new UInt<>();
     }
 
-    public static <Status, Tran> Parsec<String, Character, Status, Tran> eol() {
-        return new EndOfLine<>();
+    public static <Status, Tran> Parsec<Character, Character, Status, Tran> lf() {
+        return new Lf<>();
     }
 
-    public static <Status, Tran> Parsec<Character, Character, Status, Tran> newline() {
+    public static <Status, Tran> Parsec<String, Character, Status, Tran> newline() {
         return new Newline<>();
     }
 
@@ -64,11 +64,11 @@ public class Txt {
     }
 
     public static <Status, Tran> Parsec<Character, Character, Status, Tran> skipWhiteSpaces() {
-        return new Whitespace<Status, Tran>();
+        return new Whitespace<>();
     }
 
     public static <Status, Tran> Parsec<String, Character, Status, Tran> text(String value) {
-        return new Text<Status, Tran>(value);
+        return new Text<>(value);
     }
     
     public static <E, Status, Tran> Binder<List<Character>, String, E, Status, Tran> joining() {

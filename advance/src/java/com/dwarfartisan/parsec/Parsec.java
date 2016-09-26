@@ -12,7 +12,7 @@ public interface Parsec<T, E, Status, Tran> {
             throws EOFException, ParsecException;
 
     default <C> Parsec<C, E, Status, Tran> bind(Binder<T, C, E, Status, Tran> binder) {
-        return (s) -> {
+        return s -> {
             T value = Parsec.this.parse(s);
             return binder.bind(value).parse(s);
         };
