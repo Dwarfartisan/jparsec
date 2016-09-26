@@ -1,4 +1,4 @@
-(defproject org.clojars.marsliu/jparsec-adv "0.6.7-SNAPSHOT"
+(defproject org.clojars.marsliu/jparsec-adv "0.6.8"
   :name "JParsec"
   :description "Haskell Parsec Library's Java 1.8+ Editon"
   :url "https://github.com/Dwarfartisan/jparsec"
