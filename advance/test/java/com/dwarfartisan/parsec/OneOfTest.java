@@ -5,8 +5,6 @@ import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -20,9 +18,6 @@ import static java.util.stream.Collectors.toSet;
  * @since 2016-09-12
  */
 public class OneOfTest extends Base{
-    private String data = "It is a \"string\" for this unit test";
-
-
     @Before
     public void before() throws Exception {
     }

@@ -1,13 +1,12 @@
 package com.dwarfartisan.parsec;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
-/**
- * Created by zhaonf on 16/1/10.
- */
+import static com.dwarfartisan.parsec.Combinator.*;
+
 public class TryTest extends Base {
 
     @Before
@@ -19,27 +18,23 @@ public class TryTest extends Base {
     }
 
     @Test
-    public void TestTry() throws Exception {
-
+    public void simple() throws Exception {
         State<Character, Integer, Integer> state = newState("hello");
-
-        Try<Character,Character, Integer, Integer> ttry = new Try<>(
-            new Eq<>('h'));
-
-        Character s = ttry.parse(state);
-
-        Assert.assertEquals(s,new Character('h'));
-
-        State<Character, Integer, Integer> state1 = newState("sello");
-
+        Parsec<Character,Character, Integer, Integer> parser = new Try<>(new Eq<>('h'));
+        Character s = parser.parse(state);
+        assertEquals(s,new Character('h'));
+    }
+    
+    @Test
+    public void rollback() throws Exception {
+        State<Character, Integer, Integer> state = newState("test data.");
+        Parsec<String, Character, Integer, Integer> parser = attempt(new Text<>("hello"));
+        Integer status = state.status();
         try{
-            Character b = ttry.parse(state1);
-            Assert.fail("not match");
-
+            parser.parse(state);
+            fail("Should not reach here.");
         }catch(Exception e){
-            if(!state1.next().equals('s')){
-                Assert.fail("not rollback");
-            }
+        	assertEquals("State should rollback if failed.", status, state.status());
         }
     }
 }

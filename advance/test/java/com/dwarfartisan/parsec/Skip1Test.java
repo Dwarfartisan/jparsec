@@ -8,8 +8,6 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.internal.runners.statements.*;
-
 import static com.dwarfartisan.parsec.Combinator.skip1;
 import static com.dwarfartisan.parsec.Txt.text;
 
